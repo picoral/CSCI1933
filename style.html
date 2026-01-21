@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CSCI 1933 Spring 2026</title>
+<title>style</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3053,83 +3053,186 @@ vertical-align: -.125em;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#documents" id="toc-documents" class="nav-link active" data-scroll-target="#documents">Documents</a></li>
-  <li><a href="#module-01" id="toc-module-01" class="nav-link" data-scroll-target="#module-01">Module 01</a>
+  <li><a href="#csci-1933-lab-and-project-guidelines" id="toc-csci-1933-lab-and-project-guidelines" class="nav-link active" data-scroll-target="#csci-1933-lab-and-project-guidelines">CSCI 1933 Lab and Project Guidelines</a>
   <ul class="collapse">
-  <li><a href="#slides" id="toc-slides" class="nav-link" data-scroll-target="#slides">Slides</a></li>
-  <li><a href="#lecture-recording" id="toc-lecture-recording" class="nav-link" data-scroll-target="#lecture-recording">Lecture Recording</a></li>
+  <li><a href="#introduction-and-motivation" id="toc-introduction-and-motivation" class="nav-link" data-scroll-target="#introduction-and-motivation">1. Introduction and Motivation</a></li>
+  <li><a href="#style-guide" id="toc-style-guide" class="nav-link" data-scroll-target="#style-guide">2. Style Guide</a>
+  <ul class="collapse">
+  <li><a href="#source-file-structure" id="toc-source-file-structure" class="nav-link" data-scroll-target="#source-file-structure">2.1 Source File Structure</a></li>
+  <li><a href="#commenting" id="toc-commenting" class="nav-link" data-scroll-target="#commenting">2.2 Commenting</a></li>
+  <li><a href="#naming-rules" id="toc-naming-rules" class="nav-link" data-scroll-target="#naming-rules">2.3 Naming Rules</a></li>
+  <li><a href="#indentation" id="toc-indentation" class="nav-link" data-scroll-target="#indentation">2.4 Indentation</a></li>
+  <li><a href="#braces" id="toc-braces" class="nav-link" data-scroll-target="#braces">2.5 Braces</a></li>
   </ul></li>
-  <li><a href="#module-02" id="toc-module-02" class="nav-link" data-scroll-target="#module-02">Module 02</a>
+  <li><a href="#programming-principles" id="toc-programming-principles" class="nav-link" data-scroll-target="#programming-principles">3. Programming Principles</a>
   <ul class="collapse">
-  <li><a href="#slides-1" id="toc-slides-1" class="nav-link" data-scroll-target="#slides-1">Slides</a></li>
+  <li><a href="#code-reusability" id="toc-code-reusability" class="nav-link" data-scroll-target="#code-reusability">3.1 Code Reusability</a></li>
+  <li><a href="#unnecessary-expressions" id="toc-unnecessary-expressions" class="nav-link" data-scroll-target="#unnecessary-expressions">3.2 Unnecessary Expressions</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
 </div>
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">CSCI 1933 Spring 2026</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
+<p><a href="index.html">Go back to Course Home Page</a></p>
+<section id="csci-1933-lab-and-project-guidelines" class="level1">
+<h1>CSCI 1933 Lab and Project Guidelines</h1>
+<section id="introduction-and-motivation" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-and-motivation">1. Introduction and Motivation</h2>
+<p>For the first project submission, style will be a minor portion of the grade you receive and poor efficiency will only penalized in extreme cases - some comments will be expected, but efficiency will not be evaluated. This is designed to allow you to devote all of your resources to achieving proper output. However, there exist many other factors in quality production level code since efficiency and maintainability become exponentially more important as projects increase in scale. This course will introduce you to using a cohesive style and maintaining good practices that will be expanded upon in future coursework.</p>
+<p>All content in this document will be considered mandatory for all work beginning with the second project and failing to follow the guidelines specified will result in loss of points. As the semester progresses, a larger portion of your grade on projects will be determined by the quality of the code you submit as opposed to simply producing the desired output. If you have any questions regarding what is expected on your submissions please refer all questions to the Discord forums.</p>
+</section>
+<section id="style-guide" class="level2">
+<h2 class="anchored" data-anchor-id="style-guide">2. Style Guide</h2>
+<p>Style guidelines serve to address aesthetic issues of formatting, required conventions, and clearly enforceable guidelines. The style portion of this document will be a revised and condensed version of the Google Java Style Guide.</p>
+<section id="source-file-structure" class="level3">
+<h3 class="anchored" data-anchor-id="source-file-structure">2.1 Source File Structure</h3>
+<p>Please use the following source file (every .java file created) structure:</p>
+<ol type="1">
+<li>A coment including your name and x500</li>
+<li>A comment including your partner’s name and x500 (if applicable)</li>
+<li>Import statements</li>
+<li>Exactly one class</li>
+</ol>
+<p>The ordering of your class contents is a design choice you have to make, but all related code should be grouped together. This means that all class variables should be initialized in the same place and constructors should be next to each other if multiple exist. You can decide if you want your private methods next to the public methods they are associated with or if you want all public methods grouped together.</p>
+</section>
+<section id="commenting" class="level3">
+<h3 class="anchored" data-anchor-id="commenting">2.2 Commenting</h3>
+<p>Commenting has been a minor part of your evaluation, but will start to play a larger role. Com- menting refers to both JavaDocs and in-line comments. JavaDocs are one form of commenting that are placed on top of non-trivial functions. In-line comments should clarify individual lines or block of codes that are not obvious upon first glance, any code that is “self-documenting” (like getter methods) does not need further in-line comments. A simplified outline of JavaDocs is provided below:</p>
+<ol type="1">
+<li>Description of the method</li>
+<li>All parameters and a description of them preceded by the <span class="citation" data-cites="param">@param</span> tag</li>
+<li>The potential return values preced by the <span class="citation" data-cites="return">@return</span> tag</li>
+</ol>
+<p>An example of a JavaDoc is below for a sample problem:</p>
+<pre><code>/*
+  Method returns a copy of a row of data given the corresponding name of the row. Assumes the input rowName will be present in this.rowLabels and is unique.
+  @param public rowName a string representing the name of the row to be returned
+  @returns a copy of the row corresponding to the title
+*/
 
+int[] getRow(String rowName){
+  int rowNumber = -1;
+  int i = 0;
+  while (rowNumber == -1 &amp;&amp; i &lt; this.rowLabels.length){
+    if(rowName.equals(this.rowLabels[i])) {
+      rowNumber = i;
+    }
+    i++;
+  }
 
-</header>
-
-
-<section id="documents" class="level1">
-<h1>Documents</h1>
+  int[] returnedArray = newint[this.dataArray[rowNumber].length];
+  System.arraycopy(this.dataArray[rowNumber], 0, returnedArray, 0, this.dataArray[rowNumber].length);
+  return returnedArray;
+}</code></pre>
+</section>
+<section id="naming-rules" class="level3">
+<h3 class="anchored" data-anchor-id="naming-rules">2.3 Naming Rules</h3>
 <ul>
-<li><a href="syllabus.html">Syllabus</a></li>
-<li><a href="style.html">Style Guide for Lab and Project Submissions</a></li>
+<li>Class Names: UpperCamelCase</li>
+<li>Method Names: lowerCamelCase</li>
+<li>Non-constant Variables: lowerCamelCase</li>
+<li>Constant and Final Variables: UPPER_CAE_DELIMITED_BY_UNDERSCORE</li>
 </ul>
 </section>
-<section id="module-01" class="level1">
-<h1>Module 01</h1>
-<p>The goal of this module is to provide an overview of the course.</p>
-<p>For this module we will focus first-and-foremost on getting the class started. We’ll be seeing the basic class design, learning what are the parts of the class, and how they will help us learn.</p>
-<p>By the end of the week you should be able to:</p>
-<ul>
-<li>Decide whether CSCI 1933 is a course for you (if you fit the audience)</li>
-<li>Prepare for what we will do to learn, and why</li>
-</ul>
-<section id="slides" class="level2">
-<h2 class="anchored" data-anchor-id="slides">Slides</h2>
-<ul>
-<li><a href="slides/slides-00-00.html">Course Overview</a></li>
-</ul>
+<section id="indentation" class="level3">
+<h3 class="anchored" data-anchor-id="indentation">2.4 Indentation</h3>
+<p>Indentation should be increased each time a new block is opened and returns when that block closes. A new block happens at all conditional statements, loops, switch statements, method declarations, and classes. We do not care if you use 2 or 4 space indentation.</p>
 </section>
-<section id="lecture-recording" class="level2">
-<h2 class="anchored" data-anchor-id="lecture-recording">Lecture Recording</h2>
+<section id="braces" class="level3">
+<h3 class="anchored" data-anchor-id="braces">2.5 Braces</h3>
 <ul>
-<li><a href="https://umn.zoom.us/rec/share/EkTJ6ajTWY15HtkUxw74isEyQJ7HMmFmzfwPeRYp0PeyUQkJczVi9wQGboGWwf0H.F2KN3MxFY1UPEOdB?startTime=1769007428000">Jan 21 recording</a></li>
+<li>Braces should be used with if, else, for, do and while statements, even when the body is empty or contains only a single statement.</li>
+<li>We are not concerned about what style you follow with regards to line breaks around braces as long as it is consistent</li>
 </ul>
 </section>
 </section>
-<section id="module-02" class="level1">
-<h1>Module 02</h1>
-<p>Introduction to Java, Java data, Java Program Structure</p>
-<p>By the end of this module, you will be able to:</p>
-<ul>
-<li>Write, compile, and execute simple Java programs, demonstrating understanding of basic Java syntax and the program development workflow</li>
-<li>Identify and explain the essential components of a basic Java program structure, including the class declaration, main method signature, and statement syntax.</li>
-<li>Recognize and correct common syntax errors in simple Java programs using compiler error messages as guidance.</li>
-</ul>
-<section id="slides-1" class="level2">
-<h2 class="anchored" data-anchor-id="slides-1">Slides</h2>
-<ul>
-<li><a href="slides/slides-01-00.html">Intro to Java</a></li>
-</ul>
+<section id="programming-principles" class="level2">
+<h2 class="anchored" data-anchor-id="programming-principles">3. Programming Principles</h2>
+<section id="code-reusability" class="level3">
+<h3 class="anchored" data-anchor-id="code-reusability">3.1 Code Reusability</h3>
+<p>Non-trivial code should be reused in all cases. If the same logic is implemented multiple times, it should be sectioned off into a function and called instead of copying and pasting the code. To explain this, we will examine a solution to an adapted problem from the first midterm. Commenting have been omitted in this example. Suppose we have the following code already implemented:</p>
+<pre><code>public class Table {
+  private int[][] dataArray;
+  private String[] rowLabels;
+  private String[] colLabels;
+
+  public Table(int[][] inputArray, String[] rowLabels, String[] colLabels){
+    this.dataArray = inputArray;
+    this.rowLabels = rowLabels;
+    this.colLabels = colLabels;
+  }
+
+  public int[] getColumn(String[] colName){
+    int colNumber = -1;
+    int i = 0;
+    while (colNumber == -1 &amp;&amp; i &lt; this.colLabels.length){
+      if(colName.equals(this.colLabels[i]){
+        colNumbber = i;
+      }
+      i++;
+    }
+    int[] returnedArray = new int[this.dataArray.length];
+    for(int j = 0; j &lt; this.dataArray.length; j++){
+      returnedArray[j] = this.dataArray[j][colNumber;
+    }
+    return returnedArray;
+  }
+</code></pre>
+<p>Suppose we wanted to implement the getColSum function. We will examine a good and a poor oslution in terms of code reuse.</p>
+<p>Poor example:</p>
+<pre><code>public int getColSum(String colName) {
+  int colNumber = -1;
+  int i = 0;
+
+  while (colNumber == -1 &amp;&amp; i &lt; this.colLabels.length) {
+    if(colName.equals(this.colLabels[i])) {
+      colNumber = i;
+    }
+    i++;
+  }
+  int[] associatedColumn = new int[this.dataArray.length];
+  for(int j = 0; j &lt; this.dataArray.length; j++) {
+    associatedColumn[j] = this.dataArray[j][colNumber];
+  }
+
+  int sum = 0;
+  for (int i =0; i &lt; associatedColumn.length; i++) {
+    sum += associatedColumn[i]
+  }
+  return sum;
+}</code></pre>
+<p>Notice the differences in the example with good code reuse. Instead of re-implementing the code from getColumn, the function is simply called and used. Not only is it 15 lines shorter, it is more readable and easier to debug.</p>
+<pre><code>public int getColSum(String colName) {
+  int[] associatedColumn = this.getColumn(colName);
+  int sum = 0;
+  for(int i = 0; i &lt; associatedColumn.length; i++){
+    sum += asssociatedColumn[i];
+  }
+  return sum;
+}</code></pre>
+</section>
+<section id="unnecessary-expressions" class="level3">
+<h3 class="anchored" data-anchor-id="unnecessary-expressions">3.2 Unnecessary Expressions</h3>
+<p>Expressions should be stated in reduced expressions. The most common example we have seen throughout this course is in regards to boolean expressions. A good example and a bad example is demonstrated below.</p>
+<pre><code>// Suppose these declarations exist:
+boolean booleanExpression1 = true;
+boolean booleanExpression2 = false;
+
+// Bad Example - Note redundancy
+if (booleanExpression1 &amp;&amp; booleanExpression2) {
+  return true;
+} else {
+  return false;
+}
+
+// Good Example - All cases are expressed in a single statement
+return booleanExpression1 &amp;&amp; booleanExpression2</code></pre>
+</section>
 </section>
 </section>
 
