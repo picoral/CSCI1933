@@ -1144,12 +1144,24 @@ margin-right: 0; }
 <li><code>String[] args</code> is the parameter, an array of String</li>
 </ul>
 </section>
+<section id="java-program-structure" class="slide level2">
+<h2>Java Program Structure</h2>
+<ul>
+<li>Everything is in a class – what is a class? (Well, there are packages too, but later)</li>
+<li>No class, no program.</li>
+<li>Every program must have a <code>main()</code> method.</li>
+<li>Why? <code>main()</code> is the execution entry point</li>
+<li>Programs typically consist of many classes</li>
+<li>Each class could have a <code>main()</code> method</li>
+<li>So, then, which <code>main()</code> runs?</li>
+</ul>
+</section>
 <section id="typing" class="slide level2">
 <h2>Typing</h2>
 <ul>
 <li>Python does dynamic typing</li>
 </ul>
-<div id="08b0438d" class="cell" data-execution_count="1">
+<div id="d8befa2d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href></a>word <span class="op">=</span> <span class="st">&quot;car&quot;</span></span>
 <span id="cb3-2"><a href></a>number <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb3-3"><a href></a>new_list <span class="op">=</span> []</span>
@@ -1192,7 +1204,7 @@ margin-right: 0; }
 <ul>
 <li>in some context a type-specific default is used</li>
 </ul></li>
-<li>Two “flavors” of variable: primitive and object</li>
+<li>Two “flavors” of variable: primitive (often called scaler or base) and object (reference)</li>
 </ul>
 </section>
 <section id="java-primitive-types" class="slide level2">
@@ -1275,11 +1287,14 @@ margin-right: 0; }
 <section id="style-and-documentation" class="slide level2">
 <h2>Style and documentation</h2>
 <ul>
-<li><p>variable names often camelCase</p></li>
-<li><p>Java requires a lot of code to express a simple concept.</p></li>
-<li><p>You need to be much more explicit when writing Java than Python (more words to type in Java)</p></li>
-<li><p>Comments are extra important</p></li>
+<li>variable names often camelCase</li>
+<li>white space (new lines, indendation) means nothing, but should be used for style (to make code easier to read)</li>
+<li>Java requires a lot of code to express a simple concept.</li>
+<li>You need to be much more explicit when writing Java than Python (more words to type in Java)</li>
 </ul>
+</section>
+<section id="style-and-documentation-1" class="slide level2">
+<h2>Style and documentation</h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href></a>// one line comment</span>
 <span id="cb6-2"><a href></a></span>
 <span id="cb6-3"><a href></a>/*</span>
