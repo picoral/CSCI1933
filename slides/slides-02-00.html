@@ -1072,7 +1072,7 @@ margin-right: 0; }
 <section id="classes" class="slide level2">
 <h2>Classes</h2>
 <ul>
-<li>Collection of methods and attributes (information/values)</li>
+<li>Grouped methods and attributes (information/values)</li>
 <li>Template, blueprint of cookie cutter to construct many objects</li>
 </ul>
 <p>Modularity: Classes allow us to split the problem to be solved into distinct tasks</p>
@@ -1167,6 +1167,105 @@ margin-right: 0; }
 <span id="cb3-6"><a href></a>        System.out.println(wordOne.equals(wordTwo));</span>
 <span id="cb3-7"><a href></a></span>
 <span id="cb3-8"><a href></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="gradescope-attendance" class="slide level2">
+<h2>Gradescope attendance</h2>
+<p><a href="https://www.gradescope.com/courses/1234179/assignments/7538015/">Answer this short quiz on comparisons of objects on gradescope</a></p>
+</section>
+<section id="practice-1" class="slide level2">
+<h2>Practice</h2>
+<ol type="1">
+<li>Download <a href="../code/ComplexNumber.java">ComplexNumber.java</a></li>
+<li>Compile it and run it</li>
+</ol>
+<p>Discuss</p>
+<ul>
+<li>What are the attributes?</li>
+<li>What are the constructors?</li>
+<li>How do we call a constructor to create an object?</li>
+<li>What are the methods?</li>
+</ul>
+</section>
+<section id="in-class-exercise" class="slide level2">
+<h2>In-class exercise</h2>
+<p>Write a class called <code>MyTimejava</code> that, given number (integer) as seconds, it converts it to <code>hours:minutes:seconds</code>. Your application should print the equivalent hours, minutes, and seconds in this format: <code>hours:minutes:seconds</code></p>
+<p>Examples: <code>1</code> should be converted to the <code>&quot;0:0:1&quot;</code>, <code>3661</code> should be converted to the <code>&quot;1:1:1&quot;</code>, <code>8274</code> should be converted to the <code>&quot;2:17:54&quot;</code></p>
+<p>HINTS: There are 3600 seconds in one hour. Use % to calculate minutes and seconds left.</p>
+</section>
+<section id="traditional-solution-no-object-instantiation" class="slide level2">
+<h2>“Traditional” Solution (no object instantiation)</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href></a>public class MyTime {</span>
+<span id="cb4-2"><a href></a></span>
+<span id="cb4-3"><a href></a>    public static int getHours(int seconds) {</span>
+<span id="cb4-4"><a href></a>        return seconds/3600;</span>
+<span id="cb4-5"><a href></a>    }</span>
+<span id="cb4-6"><a href></a></span>
+<span id="cb4-7"><a href></a>    public static int getMinutes(int seconds) {</span>
+<span id="cb4-8"><a href></a>        return seconds/60;</span>
+<span id="cb4-9"><a href></a>    }</span>
+<span id="cb4-10"><a href></a></span>
+<span id="cb4-11"><a href></a>    public static String getTime(int seconds) {</span>
+<span id="cb4-12"><a href></a>        // get full hours</span>
+<span id="cb4-13"><a href></a>        int hours = getHours(seconds);</span>
+<span id="cb4-14"><a href></a>        // update how many seconds are left</span>
+<span id="cb4-15"><a href></a>        int secondsLeft = seconds - (hours * 3600);</span>
+<span id="cb4-16"><a href></a>        // calculate full minutes</span>
+<span id="cb4-17"><a href></a>        int minutes = getMinutes(secondsLeft);</span>
+<span id="cb4-18"><a href></a>        // update how many seconds are left</span>
+<span id="cb4-19"><a href></a>        secondsLeft = secondsLeft - (minutes * 60);</span>
+<span id="cb4-20"><a href></a>        </span>
+<span id="cb4-21"><a href></a>        return hours + &quot;:&quot; + minutes + &quot;:&quot; + secondsLeft;</span>
+<span id="cb4-22"><a href></a>    }</span>
+<span id="cb4-23"><a href></a></span>
+<span id="cb4-24"><a href></a>    public static void main(String[] args) {</span>
+<span id="cb4-25"><a href></a>        int seconds = 119;</span>
+<span id="cb4-26"><a href></a>        String result = getTime(seconds);</span>
+<span id="cb4-27"><a href></a>        System.out.println(result);</span>
+<span id="cb4-28"><a href></a></span>
+<span id="cb4-29"><a href></a>    }</span>
+<span id="cb4-30"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="solution-with-object-instantiation" class="slide level2">
+<h2>Solution with Object Instantiation</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href></a>public class MyTime {</span>
+<span id="cb5-2"><a href></a>  </span>
+<span id="cb5-3"><a href></a>    public MyTime(int seconds) {</span>
+<span id="cb5-4"><a href></a>        secondsLeft = seconds;</span>
+<span id="cb5-5"><a href></a></span>
+<span id="cb5-6"><a href></a>        // get full hours</span>
+<span id="cb5-7"><a href></a>        hours = getHours();</span>
+<span id="cb5-8"><a href></a></span>
+<span id="cb5-9"><a href></a>        // update how many seconds are left</span>
+<span id="cb5-10"><a href></a>        secondsLeft = secondsLeft - (hours * 3600);</span>
+<span id="cb5-11"><a href></a></span>
+<span id="cb5-12"><a href></a>        // calculate full minutes</span>
+<span id="cb5-13"><a href></a>        minutes = getMinutes();</span>
+<span id="cb5-14"><a href></a></span>
+<span id="cb5-15"><a href></a>        // update how many seconds are left</span>
+<span id="cb5-16"><a href></a>        secondsLeft = secondsLeft - (minutes * 60);</span>
+<span id="cb5-17"><a href></a>    }</span>
+<span id="cb5-18"><a href></a></span>
+<span id="cb5-19"><a href></a>    public String getHMS() {</span>
+<span id="cb5-20"><a href></a>        return hours + &quot;:&quot; + minutes + &quot;:&quot; + secondsLeft;</span>
+<span id="cb5-21"><a href></a>    }</span>
+<span id="cb5-22"><a href></a></span>
+<span id="cb5-23"><a href></a>    private int getHours() {</span>
+<span id="cb5-24"><a href></a>        return secondsLeft/3600;</span>
+<span id="cb5-25"><a href></a>    }</span>
+<span id="cb5-26"><a href></a></span>
+<span id="cb5-27"><a href></a>    private int getMinutes() {</span>
+<span id="cb5-28"><a href></a>        return secondsLeft/60;</span>
+<span id="cb5-29"><a href></a>    }</span>
+<span id="cb5-30"><a href></a>    </span>
+<span id="cb5-31"><a href></a>    private int secondsLeft;</span>
+<span id="cb5-32"><a href></a>    private int hours;</span>
+<span id="cb5-33"><a href></a>    private int minutes;</span>
+<span id="cb5-34"><a href></a></span>
+<span id="cb5-35"><a href></a>    public static void main(String[] args) {</span>
+<span id="cb5-36"><a href></a>        MyTime time = new MyTime(3661);</span>
+<span id="cb5-37"><a href></a>        System.out.println(time.getHMS());</span>
+<span id="cb5-38"><a href></a>    }</span>
+<span id="cb5-39"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="looking-back" class="slide level2">
 <h2>Looking back</h2>
