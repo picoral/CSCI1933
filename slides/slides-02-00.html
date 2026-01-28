@@ -1196,11 +1196,11 @@ margin-right: 0; }
 <h2>“Traditional” Solution (no object instantiation)</h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href></a>public class MyTime {</span>
 <span id="cb4-2"><a href></a></span>
-<span id="cb4-3"><a href></a>    public static int getHours(int seconds) {</span>
+<span id="cb4-3"><a href></a>    private static int getHours(int seconds) {</span>
 <span id="cb4-4"><a href></a>        return seconds/3600;</span>
 <span id="cb4-5"><a href></a>    }</span>
 <span id="cb4-6"><a href></a></span>
-<span id="cb4-7"><a href></a>    public static int getMinutes(int seconds) {</span>
+<span id="cb4-7"><a href></a>    private static int getMinutes(int seconds) {</span>
 <span id="cb4-8"><a href></a>        return seconds/60;</span>
 <span id="cb4-9"><a href></a>    }</span>
 <span id="cb4-10"><a href></a></span>
@@ -1225,52 +1225,10 @@ margin-right: 0; }
 <span id="cb4-29"><a href></a>    }</span>
 <span id="cb4-30"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="solution-with-object-instantiation" class="slide level2">
-<h2>Solution with Object Instantiation</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href></a>public class MyTime {</span>
-<span id="cb5-2"><a href></a>  </span>
-<span id="cb5-3"><a href></a>    public MyTime(int seconds) {</span>
-<span id="cb5-4"><a href></a>        secondsLeft = seconds;</span>
-<span id="cb5-5"><a href></a></span>
-<span id="cb5-6"><a href></a>        // get full hours</span>
-<span id="cb5-7"><a href></a>        hours = getHours();</span>
-<span id="cb5-8"><a href></a></span>
-<span id="cb5-9"><a href></a>        // update how many seconds are left</span>
-<span id="cb5-10"><a href></a>        secondsLeft = secondsLeft - (hours * 3600);</span>
-<span id="cb5-11"><a href></a></span>
-<span id="cb5-12"><a href></a>        // calculate full minutes</span>
-<span id="cb5-13"><a href></a>        minutes = getMinutes();</span>
-<span id="cb5-14"><a href></a></span>
-<span id="cb5-15"><a href></a>        // update how many seconds are left</span>
-<span id="cb5-16"><a href></a>        secondsLeft = secondsLeft - (minutes * 60);</span>
-<span id="cb5-17"><a href></a>    }</span>
-<span id="cb5-18"><a href></a></span>
-<span id="cb5-19"><a href></a>    public String getHMS() {</span>
-<span id="cb5-20"><a href></a>        return hours + &quot;:&quot; + minutes + &quot;:&quot; + secondsLeft;</span>
-<span id="cb5-21"><a href></a>    }</span>
-<span id="cb5-22"><a href></a></span>
-<span id="cb5-23"><a href></a>    private int getHours() {</span>
-<span id="cb5-24"><a href></a>        return secondsLeft/3600;</span>
-<span id="cb5-25"><a href></a>    }</span>
-<span id="cb5-26"><a href></a></span>
-<span id="cb5-27"><a href></a>    private int getMinutes() {</span>
-<span id="cb5-28"><a href></a>        return secondsLeft/60;</span>
-<span id="cb5-29"><a href></a>    }</span>
-<span id="cb5-30"><a href></a>    </span>
-<span id="cb5-31"><a href></a>    private int secondsLeft;</span>
-<span id="cb5-32"><a href></a>    private int hours;</span>
-<span id="cb5-33"><a href></a>    private int minutes;</span>
-<span id="cb5-34"><a href></a></span>
-<span id="cb5-35"><a href></a>    public static void main(String[] args) {</span>
-<span id="cb5-36"><a href></a>        MyTime time = new MyTime(3661);</span>
-<span id="cb5-37"><a href></a>        System.out.println(time.getHMS());</span>
-<span id="cb5-38"><a href></a>    }</span>
-<span id="cb5-39"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
 <section id="looking-back" class="slide level2">
 <h2>Looking back</h2>
 <ul>
-<li>Good to know: the difference between simple and Object data</li>
+<li>Good to know: the difference between simple/primitive and Object data</li>
 <li>Good to know: the difference between a class and an Object</li>
 </ul>
 
