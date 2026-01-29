@@ -442,7 +442,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="CSCI 1933 – Introduction to Algorithms and Data StructuresAdriana Picoral">
-  <title>Java Classes and Objects</title>
+  <title>Keyword: static</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -1051,7 +1051,7 @@ margin-right: 0; }
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Java Classes and Objects</h1>
+  <h1 class="title">Keyword: static</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -1062,203 +1062,113 @@ margin-right: 0; }
 </div>
 
 </section>
-<section id="class-vs.-object" class="slide level2">
-<h2>Class vs. Object</h2>
-<p><strong>Class</strong> - A blueprint or template that defines the structure and behavior of objects.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href></a>public class MyTime {</span>
-<span id="cb1-2"><a href></a>  </span>
-<span id="cb1-3"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Object/Instance</strong> - A concrete realization of a class. If a class is the blueprint, an object is the actual house built from it.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href></a>MyTime time = new MyTime();</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="warm-up" class="slide level2">
+<h2>Warm-up</h2>
+<p>Identify the parts (instance variables, constructor, getters and setters, operators, helpers) in the code below:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href></a>public class Calculator {</span>
+<span id="cb1-2"><a href></a>    private double left;</span>
+<span id="cb1-3"><a href></a>    private double right;</span>
+<span id="cb1-4"><a href></a></span>
+<span id="cb1-5"><a href></a>    public Calculator(double left, double right) {</span>
+<span id="cb1-6"><a href></a>        this.left = left;</span>
+<span id="cb1-7"><a href></a>        this.right = right;</span>
+<span id="cb1-8"><a href></a>    }</span>
+<span id="cb1-9"><a href></a></span>
+<span id="cb1-10"><a href></a>    public double getLeft() {</span>
+<span id="cb1-11"><a href></a>        return left;</span>
+<span id="cb1-12"><a href></a>    }</span>
+<span id="cb1-13"><a href></a></span>
+<span id="cb1-14"><a href></a>    public double getRight() {</span>
+<span id="cb1-15"><a href></a>        return right;</span>
+<span id="cb1-16"><a href></a>    }</span>
+<span id="cb1-17"><a href></a></span>
+<span id="cb1-18"><a href></a>    public void setLeft(double number) {</span>
+<span id="cb1-19"><a href></a>        left = number;</span>
+<span id="cb1-20"><a href></a>    }</span>
+<span id="cb1-21"><a href></a></span>
+<span id="cb1-22"><a href></a>    public void setRight(double number) {</span>
+<span id="cb1-23"><a href></a>        right = number;</span>
+<span id="cb1-24"><a href></a>    }</span>
+<span id="cb1-25"><a href></a></span>
+<span id="cb1-26"><a href></a>    public double add() {</span>
+<span id="cb1-27"><a href></a>        return left + right;</span>
+<span id="cb1-28"><a href></a>    }</span>
+<span id="cb1-29"><a href></a></span>
+<span id="cb1-30"><a href></a>    public double subtract() {</span>
+<span id="cb1-31"><a href></a>        return left - right;</span>
+<span id="cb1-32"><a href></a>    }</span>
+<span id="cb1-33"><a href></a></span>
+<span id="cb1-34"><a href></a>    public double multiply() {</span>
+<span id="cb1-35"><a href></a>        return left * right;</span>
+<span id="cb1-36"><a href></a>    }</span>
+<span id="cb1-37"><a href></a></span>
+<span id="cb1-38"><a href></a>    public double divide() {</span>
+<span id="cb1-39"><a href></a>        return left / right;</span>
+<span id="cb1-40"><a href></a>    }</span>
+<span id="cb1-41"><a href></a></span>
+<span id="cb1-42"><a href></a>    public static void main(String[] args) {</span>
+<span id="cb1-43"><a href></a>        Calculator calc = new Calculator(10, 5.6);</span>
+<span id="cb1-44"><a href></a>        System.out.println(calc.add());</span>
+<span id="cb1-45"><a href></a>        System.out.println(calc.subtract());</span>
+<span id="cb1-46"><a href></a>        System.out.println(calc.multiply());</span>
+<span id="cb1-47"><a href></a>        System.out.println(calc.divide());</span>
+<span id="cb1-48"><a href></a>    }</span>
+<span id="cb1-49"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="static" class="slide level2">
+<h2>Static</h2>
+<p>Use the keyword <code>static</code> for methods or variables that belong to the class itself rather than instances/individual objects</p>
 <ul>
-<li>Each object is an independent copy of the <code>Class</code></li>
-<li>Creating objects from a class is often called <em>instantiating</em> the class</li>
+<li><strong>Static methods</strong> are called without creating an object</li>
+</ul>
+<p>Instance Variables vs Class Variables (use static) - Instance variables are unique to each object, while class variables are shared across all instances of a class.</p>
+<ul>
+<li>When a <strong>class variable</strong> is changed, that attribute is changed for the class (change is realized in all objects of that class)</li>
 </ul>
 </section>
-<section id="keyword-new" class="slide level2">
-<h2>Keyword <code>new</code></h2>
-<p>The keyword <code>new</code> does three things:</p>
+<section id="static-vs.-non-static" class="slide level2">
+<h2>Static vs. non-static</h2>
 <ul>
-<li>finds space in memory for the new object</li>
-<li>calls the constructor to initialize the object</li>
-<li>returns the location in memory where the object resides</li>
+<li>static – property of the Class
+<ul>
+<li>Used for utility functions</li>
+<li>Used for constants</li>
+<li>Used for “global” like variables (shared by all instances)</li>
+</ul></li>
+<li>non-static – property of instances of the class
+<ul>
+<li>used for behavior of object</li>
+<li>used for instance data</li>
+<li>a reasonable default</li>
+</ul></li>
 </ul>
 </section>
-<section id="class-vs.-object-1" class="slide level2">
-<h2>Class vs. Object</h2>
-<ul>
-<li>A <code>Class</code> definition is like the plan for a house</li>
-<li>An <code>Object</code> is like a house built according to the plan</li>
-<li>Many houses can be built following the same plan</li>
-<li>The existence of a plan does not mean a building exists, but once a plan exists, one or more buildings can be built to the plan spec</li>
-<li>Similarly, many <code>Objects</code> can be created from a <code>Class</code> definition</li>
-</ul>
+<section id="static-methods" class="slide level2">
+<h2>Static Methods</h2>
+<p>We can have static methods in any class, here’s an example – we will add this static method to our <code>Calculator</code> class:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href></a>public static boolean isOdd(int number) {</span>
+<span id="cb2-2"><a href></a>  return number % 2 != 0;</span>
+<span id="cb2-3"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here’s how we use it (note the difference between calling an object method and a static class method):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href></a>Calculator.isOdd(10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="parts-of-a-class" class="slide level2">
-<h2>Parts of a Class</h2>
-<p><strong>Attributes/Properties/Fields</strong> - Variables that belong to a class or object, storing data about that object’s state.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href></a>public class MyTime {</span>
-<span id="cb3-2"><a href></a>  private int seconds;</span>
-<span id="cb3-3"><a href></a>  </span>
-<span id="cb3-4"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="methods" class="slide level2">
-<h2>Methods</h2>
-<p>Methods are functions defined inside a class that describe behaviors or actions an object (or class if the <code>static</code> keyword is used) can perform.</p>
-<p>Types of Methods:</p>
-<ul>
-<li>Constructor</li>
-<li>Getter</li>
-<li>Setter</li>
-<li>Operator</li>
-<li>Helper</li>
-</ul>
-</section>
-<section id="constructor" class="slide level2">
-<h2>Constructor</h2>
-<p>A special method that runs automatically when creating a new object, typically used to initialize attributes.</p>
-<ul>
-<li>No return type, same name as class</li>
-<li>There should be at least one public constructor, but there could be private constructors as well.</li>
-</ul>
-</section>
-<section id="constructor-1" class="slide level2">
-<h2>Constructor</h2>
-<ul>
-<li>Constructors are the only type of method that has no return type</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href></a>public class MyTime {</span>
-<span id="cb4-2"><a href></a>  private int seconds;</span>
-<span id="cb4-3"><a href></a>  </span>
-<span id="cb4-4"><a href></a>  public MyTime(int seconds) {</span>
-<span id="cb4-5"><a href></a>    this.seconds = seconds;</span>
-<span id="cb4-6"><a href></a>  }</span>
-<span id="cb4-7"><a href></a>  </span>
-<span id="cb4-8"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>this</code> – A reference to the current instance of the class, keyword used to differenciate between the instance variable and the parameter name</p>
-</section>
-<section id="getter-and-setter" class="slide level2">
-<h2>Getter and Setter</h2>
-<ul>
-<li>Getter/Accessor - Methods that retrieve (read) the value of private attributes.</li>
-<li>Setter/Mutator - Methods that modify (write) the value of private attributes, often with validation.</li>
-</ul>
-</section>
-<section id="getter-and-setter-1" class="slide level2">
-<h2>Getter and Setter</h2>
-<p>These are usually <code>public</code> – used to access and modify instance variables</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href></a>// getter</span>
-<span id="cb5-2"><a href></a>public int getSeconds() {</span>
-<span id="cb5-3"><a href></a>  return seconds;</span>
-<span id="cb5-4"><a href></a>}</span>
-<span id="cb5-5"><a href></a></span>
-<span id="cb5-6"><a href></a>// setter</span>
-<span id="cb5-7"><a href></a>public void setSeconds(int seconds) {</span>
-<span id="cb5-8"><a href></a>  this.seconds = seconds;</span>
-<span id="cb5-9"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="encapsulation" class="slide level2">
-<h2>Encapsulation</h2>
-<p>Bundled data and methods together (getters/setters) while hiding internal details and controlling access to them.</p>
-<ul>
-<li>Generally attributes should be <code>private</code>, and those that are intended for general use will have public accessors (getters and/or setters) with validation for setters</li>
-</ul>
-</section>
-<section id="operator-vs.-helper" class="slide level2">
-<h2>Operator vs. Helper</h2>
-<ul>
-<li><p><strong>Operator</strong> methods – use <code>public</code> keyword to provide external way to perform an operation – example: add complex numbers, subtract complex numbers</p></li>
-<li><p><strong>Helper</strong> methods – Use <code>private</code> keyword to perform operations that are used internally by other methods. These are intended for internal use within a class to support other methods, typically not meant to be called directly from outside the class.</p></li>
-</ul>
-<p>Helper methods are usually used to break down complex operations into smaller, reusable pieces. Operator methods often call helper methods.</p>
-</section>
-<section id="operator-and-helper-methods" class="slide level2">
-<h2>Operator and Helper methods</h2>
-<p>This does not complete the class code, what else do you need to make this class work as intended?</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href></a>public String getHMS() {</span>
-<span id="cb6-2"><a href></a>  return hours + &quot;:&quot; + minutes + &quot;:&quot; + seconds;</span>
-<span id="cb6-3"><a href></a>}</span>
-<span id="cb6-4"><a href></a></span>
-<span id="cb6-5"><a href></a>private int getHours() {</span>
-<span id="cb6-6"><a href></a>  return seconds/3600;</span>
-<span id="cb6-7"><a href></a>}</span>
-<span id="cb6-8"><a href></a></span>
-<span id="cb6-9"><a href></a>private int getMinutes() {</span>
-<span id="cb6-10"><a href></a>  return seconds/60;</span>
-<span id="cb6-11"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>What instance variables do we need?</p>
-</section>
-<section id="complete-the-class" class="slide level2">
-<h2>Complete the Class</h2>
-<p>What code do you need to write to have this main method work?</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href></a>public static void main(String[] args) {</span>
-<span id="cb7-2"><a href></a>  MyTime time = new MyTime(3661);</span>
-<span id="cb7-3"><a href></a>  System.out.println(time.getHMS());</span>
-<span id="cb7-4"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Submit your <code>MyTime.java</code> file to <a href="https://www.gradescope.com/courses/1234179/assignments/7549552">gradescope</a>.</p>
-</section>
-<section id="solution-with-object-instantiation" class="slide level2">
-<h2>Solution with Object Instantiation</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href></a>public class MyTime {</span>
-<span id="cb8-2"><a href></a>  </span>
-<span id="cb8-3"><a href></a>    public MyTime(int seconds) {</span>
-<span id="cb8-4"><a href></a>        secondsLeft = seconds;</span>
-<span id="cb8-5"><a href></a></span>
-<span id="cb8-6"><a href></a>        // get full hours</span>
-<span id="cb8-7"><a href></a>        hours = getHours();</span>
-<span id="cb8-8"><a href></a></span>
-<span id="cb8-9"><a href></a>        // update how many seconds are left</span>
-<span id="cb8-10"><a href></a>        secondsLeft = secondsLeft - (hours * 3600);</span>
-<span id="cb8-11"><a href></a></span>
-<span id="cb8-12"><a href></a>        // calculate full minutes</span>
-<span id="cb8-13"><a href></a>        minutes = getMinutes();</span>
-<span id="cb8-14"><a href></a></span>
-<span id="cb8-15"><a href></a>        // update how many seconds are left</span>
-<span id="cb8-16"><a href></a>        secondsLeft = secondsLeft - (minutes * 60);</span>
-<span id="cb8-17"><a href></a>    }</span>
-<span id="cb8-18"><a href></a></span>
-<span id="cb8-19"><a href></a>    public String getHMS() {</span>
-<span id="cb8-20"><a href></a>        return hours + &quot;:&quot; + minutes + &quot;:&quot; + secondsLeft;</span>
-<span id="cb8-21"><a href></a>    }</span>
-<span id="cb8-22"><a href></a></span>
-<span id="cb8-23"><a href></a>    private int getHours() {</span>
-<span id="cb8-24"><a href></a>        return secondsLeft/3600;</span>
-<span id="cb8-25"><a href></a>    }</span>
-<span id="cb8-26"><a href></a></span>
-<span id="cb8-27"><a href></a>    private int getMinutes() {</span>
-<span id="cb8-28"><a href></a>        return secondsLeft/60;</span>
-<span id="cb8-29"><a href></a>    }</span>
-<span id="cb8-30"><a href></a>    </span>
-<span id="cb8-31"><a href></a>    private int secondsLeft;</span>
-<span id="cb8-32"><a href></a>    private int hours;</span>
-<span id="cb8-33"><a href></a>    private int minutes;</span>
-<span id="cb8-34"><a href></a></span>
-<span id="cb8-35"><a href></a>    public static void main(String[] args) {</span>
-<span id="cb8-36"><a href></a>        MyTime time = new MyTime(3661);</span>
-<span id="cb8-37"><a href></a>        System.out.println(time.getHMS());</span>
-<span id="cb8-38"><a href></a>    }</span>
-<span id="cb8-39"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="access-modifiers" class="slide level2">
-<h2>Access Modifiers</h2>
-<p>For now, you have used <code>public</code> and <code>private</code>:</p>
-<ul>
-<li>public - accessible from anywhere in the program, by any class in any package.</li>
-<li>private - accessible only within the same class. This is the most restrictive modifier.</li>
-</ul>
-<p>We will take more about these later:</p>
-<ul>
-<li>protected - accessible within the same package AND by subclasses in other packages.</li>
-<li>default/package-private (no modifier) - Accessible only within the same package.</li>
-</ul>
+<section id="class-variables" class="slide level2">
+<h2>Class Variables</h2>
+<p>When we add the keyword <code>static</code> to a variable in a class, that becomes a class variable (as opposed to instance variable). Let’s add some code to the main method in our <code>Calculator</code> class, two create two objects:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href></a>Calculator calc = new Calculator(10, 5.6);</span>
+<span id="cb4-2"><a href></a>Calculator anotherCalc = new Calculator(4, 2);</span>
+<span id="cb4-3"><a href></a>System.out.println(calc.add());</span>
+<span id="cb4-4"><a href></a>System.out.println(anotherCalc.add());</span>
+<span id="cb4-5"><a href></a>anotherCalc.setLeft(10);</span>
+<span id="cb4-6"><a href></a>System.out.println(calc.add());</span>
+<span id="cb4-7"><a href></a>System.out.println(anotherCalc.add());</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Run the code and notice the output. The <code>.setLeft(10)</code> method call only changed the output for <code>anotherCalc</code> object. Change the <code>left</code> variable to static – how do the results change?</p>
 </section>
 <section id="looking-back" class="slide level2">
-<h2>Looking back</h2>
+<h2>Looking Back</h2>
 <ul>
-<li>An Object exists when a class is instantiated</li>
-<li>The existence of a class does not imply an Object of that class exists</li>
-<li>Method types: constructor, setter, getter, operator, helper</li>
-<li>What does <code>new</code> do?</li>
+<li>Give an example of when to use a static attribute</li>
+<li>Challenge: Give an example of a static method other than main()</li>
 </ul>
 
 </section>
