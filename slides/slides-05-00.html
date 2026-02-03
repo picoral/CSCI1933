@@ -1073,10 +1073,23 @@ margin-right: 0; }
 </section>
 <section id="java-array-syntax" class="slide level2">
 <h2>Java array syntax</h2>
-<p>To create a new java array, you need to specify the type of elements for the array:</p>
+<p>To create a new java array, you need to specify the type of elements for the array and its size (in this case the size or length of the array is <code>200</code>):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href></a>int[] myIntArray = new int[200];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can instead of size, specify the elements in the array:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href></a>int[] myIntArray = new int[]{2, 3, 2, 4, 5};</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Arrays are objects, with attributes:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href></a>System.out.println(myIntArray.length);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href></a>System.out.println(myIntArray.length);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="iterating-over-arrays" class="slide level2">
+<h2>Iterating over arrays</h2>
+<p>We can iterate over the array indices:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href></a>for (int i = 0; i &lt; myIntArray.length; i++) {</span>
+<span id="cb4-2"><a href></a>  // do something with variable i</span>
+<span id="cb4-3"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Or iterate over the array items (for each)</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href></a>for (int n : myIntArray) {</span>
+<span id="cb5-2"><a href></a>  // do something with variable n</span>
+<span id="cb5-3"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="practice-arraycalculator-class" class="slide level2">
 <h2>Practice – <code>ArrayCalculator</code> class</h2>
@@ -1091,19 +1104,25 @@ margin-right: 0; }
 </section>
 <section id="passing-array-objects-to-methods" class="slide level2">
 <h2>Passing array objects to methods</h2>
+<p>Write a <code>static</code> method called <code>doubleNumbers</code> that takes in a double array and modifies it by multiplying each item in the array by 2.</p>
 </section>
-<section id="what-happens-when-an-array-is-full" class="slide level2">
-<h2>What happens when an array is “full”?</h2>
+<section id="changing-the-array-size" class="slide level2">
+<h2>Changing the array size</h2>
+<p>What is we want to implement a <code>append(double value)</code> method?</p>
+<ul>
+<li>What happens when an array is “full”?</li>
+<li>How to “resize” an array?</li>
+</ul>
 </section>
-<section id="resizing-an-array" class="slide level2">
-<h2>“Resizing” an array</h2>
+<section id="expansion" class="slide level2">
+<h2>Expansion</h2>
+<p>Write a method (and test it) to reverse the elements in an array. Assume the array is completely filled.</p>
 </section>
 <section id="looking-back" class="slide level2">
 <h2>Looking Back</h2>
 <ul>
 <li>How are Python lists and Java arrays similar?</li>
 <li>How are they different?</li>
-<li>Write a method (and test it) to reverse the elements in an array. Assume the array is completely filled.</li>
 <li>Changes made to an array when passed to a method will change the original array. Why?</li>
 <li>Changes made to basic types when passed to a method will not change the original value. Why?</li>
 </ul>
