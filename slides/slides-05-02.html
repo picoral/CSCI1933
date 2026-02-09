@@ -1156,6 +1156,22 @@ margin-right: 0; }
 <span id="cb3-48"><a href></a></span>
 <span id="cb3-49"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="raggedjagged-arrays" class="slide level2">
+<h2>Ragged/Jagged Arrays</h2>
+<ul>
+<li>“Non-rectangular” array (ragged/jagged array) – an array of arrays where each inner array can have a different length
+<ul>
+<li><code>.length</code> attribute is part of each sub-array</li>
+</ul></li>
+<li>Individual subarrays can be treated “individually”</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href></a>int[][] ragged = new int[3][]; // declares an array with 3 rows, column size unspecified</span>
+<span id="cb4-2"><a href></a></span>
+<span id="cb4-3"><a href></a>// Initialize each row with a different number of columns</span>
+<span id="cb4-4"><a href></a>ragged[0] = new int[2]; // row 0 has 2 columns</span>
+<span id="cb4-5"><a href></a>ragged[1] = new int[4]; // row 1 has 4 columns</span>
+<span id="cb4-6"><a href></a>ragged[2] = new int[3]; // row 2 has 3 columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="looking-back" class="slide level2">
 <h2>Looking back</h2>
 <ul>
