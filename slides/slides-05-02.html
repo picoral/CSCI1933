@@ -1078,6 +1078,39 @@ margin-right: 0; }
 <span id="cb2-9"><a href></a>    System.out.println(item);</span>
 <span id="cb2-10"><a href></a>  }</span>
 <span id="cb2-11"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="shallow-copy-vs.-deep-copy" class="slide level2">
+<h2>Shallow copy vs. deep copy</h2>
+<p>The copying methods we saw on <a href="https://adrianapicoral.com/CSCI1933/slides/slides-05-01.html#/copying-an-array-3">the previous set of slides</a> do not implement deep copy of an array of arrays.</p>
+<ul>
+<li>That means when you copy and array of arrays, you are creating another array with references to the original lists.</li>
+</ul>
+</section>
+<section id="practice" class="slide level2">
+<h2>Practice</h2>
+<p>Create a class called <code>TheaterSeating</code> with the following requirements (for all methods, think about what parameters you need):</p>
+<ul>
+<li>Instance variable: A 2D array of boolean values representing seats (rows and columns) – <code>true</code> means the seat is occupied, <code>false</code> means it’s available.</li>
+<li>Constructor initializes the seating chart with all seats available</li>
+<li><code>toString()</code></li>
+</ul>
+</section>
+<section id="practice-continuation" class="slide level2">
+<h2>Practice – continuation</h2>
+<ul>
+<li>bookSeat(params?) - marks a seat as occupied if it’s available, returns <code>true</code> if successful, <code>false</code> if the seat was already taken</li>
+<li>cancelBooking(params?) - marks a seat as available</li>
+<li>countAvailableSeats(params?) - returns the total number of available seats</li>
+</ul>
+<p>Submit your <code>TheaterSeating.java</code> solution to gradescope</p>
+</section>
+<section id="looking-back" class="slide level2">
+<h2>Looking back</h2>
+<ul>
+<li>What’s the syntax to create an array of arrays in java?</li>
+<li>How do you iterate over an array of arrays?</li>
+<li>What’s the difference between a shallow and a deep copy of an array object?</li>
+</ul>
 
 </section>
     </div>
