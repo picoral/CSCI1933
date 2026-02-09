@@ -1092,6 +1092,7 @@ margin-right: 0; }
 <ul>
 <li>Instance variable: A 2D array of boolean values representing seats (rows and columns) – <code>true</code> means the seat is occupied, <code>false</code> means it’s available.</li>
 <li>Constructor initializes the seating chart with all seats available</li>
+<li>countAvailableSeats(params?) - returns the total number of available seats</li>
 <li><code>toString()</code></li>
 </ul>
 </section>
@@ -1100,9 +1101,60 @@ margin-right: 0; }
 <ul>
 <li>bookSeat(params?) - marks a seat as occupied if it’s available, returns <code>true</code> if successful, <code>false</code> if the seat was already taken</li>
 <li>cancelBooking(params?) - marks a seat as available</li>
-<li>countAvailableSeats(params?) - returns the total number of available seats</li>
 </ul>
 <p>Submit your <code>TheaterSeating.java</code> solution to gradescope</p>
+</section>
+<section id="solution" class="slide level2">
+<h2>Solution</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href></a>public class TheaterSeating {</span>
+<span id="cb3-2"><a href></a>    private boolean[][] seating;</span>
+<span id="cb3-3"><a href></a>    private int available;</span>
+<span id="cb3-4"><a href></a>    private int rows;</span>
+<span id="cb3-5"><a href></a>    private int columns;</span>
+<span id="cb3-6"><a href></a></span>
+<span id="cb3-7"><a href></a>    public TheaterSeating(int rows, int columns) {</span>
+<span id="cb3-8"><a href></a>        seating = new boolean[rows][columns];</span>
+<span id="cb3-9"><a href></a>        this.rows = rows;</span>
+<span id="cb3-10"><a href></a>        this.columns = columns;</span>
+<span id="cb3-11"><a href></a>        available = rows * columns;</span>
+<span id="cb3-12"><a href></a>    }</span>
+<span id="cb3-13"><a href></a></span>
+<span id="cb3-14"><a href></a>    public int countAvailableSeats() {</span>
+<span id="cb3-15"><a href></a>        return available;</span>
+<span id="cb3-16"><a href></a>    }</span>
+<span id="cb3-17"><a href></a></span>
+<span id="cb3-18"><a href></a>    public String toString() {</span>
+<span id="cb3-19"><a href></a>        String out = &quot;&quot;;</span>
+<span id="cb3-20"><a href></a>        for (int i=0; i &lt; rows; i++) {</span>
+<span id="cb3-21"><a href></a>            out += i + &quot;\t&quot;;</span>
+<span id="cb3-22"><a href></a>            for (int j=0; j &lt; columns; j++) {</span>
+<span id="cb3-23"><a href></a>                if (seating[i][j]) out += new String(Character.toChars(0x1F464)) + &quot;\t&quot;;</span>
+<span id="cb3-24"><a href></a>                else out +=  &quot;__\t&quot;;</span>
+<span id="cb3-25"><a href></a>            }</span>
+<span id="cb3-26"><a href></a>            out += &quot;\n&quot;;</span>
+<span id="cb3-27"><a href></a>        }</span>
+<span id="cb3-28"><a href></a>        return out;</span>
+<span id="cb3-29"><a href></a>    }</span>
+<span id="cb3-30"><a href></a></span>
+<span id="cb3-31"><a href></a>    public boolean bookSeat(int row, int column) {</span>
+<span id="cb3-32"><a href></a>        if (row &lt; 0 || column &lt; 0) return false;</span>
+<span id="cb3-33"><a href></a>        if (row &gt;= rows || column &gt;= columns) return false;</span>
+<span id="cb3-34"><a href></a>        if (seating[row][column]) return false;</span>
+<span id="cb3-35"><a href></a>        seating[row][column] = true;</span>
+<span id="cb3-36"><a href></a>        available--;</span>
+<span id="cb3-37"><a href></a>        return true;</span>
+<span id="cb3-38"><a href></a>    }</span>
+<span id="cb3-39"><a href></a></span>
+<span id="cb3-40"><a href></a>    public void cancelBooking(int row, int column) {</span>
+<span id="cb3-41"><a href></a>        if (row &gt;= 0 &amp;&amp; row &lt; rows &amp;&amp; columns &gt;= 0 &amp;&amp; column &lt; columns) {</span>
+<span id="cb3-42"><a href></a>            if (seating[row][column]) {</span>
+<span id="cb3-43"><a href></a>                available++;</span>
+<span id="cb3-44"><a href></a>                seating[row][column] = false;</span>
+<span id="cb3-45"><a href></a>            }</span>
+<span id="cb3-46"><a href></a>        }</span>
+<span id="cb3-47"><a href></a>    }</span>
+<span id="cb3-48"><a href></a></span>
+<span id="cb3-49"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="looking-back" class="slide level2">
 <h2>Looking back</h2>
