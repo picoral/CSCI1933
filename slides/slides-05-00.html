@@ -1281,47 +1281,55 @@ margin-right: 0; }
 <span id="cb8-60"><a href></a>            newNumbers[i] = numbers[length-1-i];</span>
 <span id="cb8-61"><a href></a>        }</span>
 <span id="cb8-62"><a href></a>        numbers = newNumbers;</span>
-<span id="cb8-63"><a href></a>    }</span>
-<span id="cb8-64"><a href></a></span>
-<span id="cb8-65"><a href></a>    public void append(double value) {</span>
-<span id="cb8-66"><a href></a>        if (size == length) resize();</span>
-<span id="cb8-67"><a href></a>        numbers[length] = value;</span>
-<span id="cb8-68"><a href></a>        length++;</span>
-<span id="cb8-69"><a href></a>    }</span>
-<span id="cb8-70"><a href></a></span>
-<span id="cb8-71"><a href></a>    private void resize() {</span>
-<span id="cb8-72"><a href></a>        size *= 2;</span>
-<span id="cb8-73"><a href></a>        double[] newNumbers = new double[size];</span>
-<span id="cb8-74"><a href></a>        for (int i=0;i&lt; numbers.length;i++) {</span>
-<span id="cb8-75"><a href></a>            newNumbers[i] = numbers[i];</span>
-<span id="cb8-76"><a href></a>        }</span>
-<span id="cb8-77"><a href></a>        numbers = newNumbers;</span>
-<span id="cb8-78"><a href></a>    }</span>
-<span id="cb8-79"><a href></a></span>
-<span id="cb8-80"><a href></a>    @Override</span>
-<span id="cb8-81"><a href></a>    public String toString() {</span>
-<span id="cb8-82"><a href></a>        String output = &quot;&quot;;</span>
-<span id="cb8-83"><a href></a>        for (int i=0;i &lt; length;i++) {</span>
-<span id="cb8-84"><a href></a>            output += numbers[i] + &quot; &quot;;</span>
-<span id="cb8-85"><a href></a>        }</span>
-<span id="cb8-86"><a href></a>        return output.trim();</span>
-<span id="cb8-87"><a href></a>    }</span>
-<span id="cb8-88"><a href></a></span>
-<span id="cb8-89"><a href></a>    @Override</span>
-<span id="cb8-90"><a href></a>    public boolean equals(Object obj) {</span>
-<span id="cb8-91"><a href></a>        if (this == obj) return true;</span>
-<span id="cb8-92"><a href></a></span>
-<span id="cb8-93"><a href></a>        if (!(obj instanceof ArrayCalculator anotherCalc)) return false;</span>
-<span id="cb8-94"><a href></a></span>
-<span id="cb8-95"><a href></a>        if (length != anotherCalc.getLength()) return false;</span>
+<span id="cb8-63"><a href></a>        // alternative, call the recursive version of reverse:</span>
+<span id="cb8-64"><a href></a>        // numbers = reverse(0, new double[length]);</span>
+<span id="cb8-65"><a href></a>    }</span>
+<span id="cb8-66"><a href></a>    </span>
+<span id="cb8-67"><a href></a>    private double[] reverse(int index, double[] newNumbers) {</span>
+<span id="cb8-68"><a href></a>        if (index == length) return newNumbers;</span>
+<span id="cb8-69"><a href></a>        newNumbers[index] = numbers[length-1-index];</span>
+<span id="cb8-70"><a href></a>        return reverse(index+1, newNumbers);</span>
+<span id="cb8-71"><a href></a>    }</span>
+<span id="cb8-72"><a href></a></span>
+<span id="cb8-73"><a href></a>    public void append(double value) {</span>
+<span id="cb8-74"><a href></a>        if (size == length) resize();</span>
+<span id="cb8-75"><a href></a>        numbers[length] = value;</span>
+<span id="cb8-76"><a href></a>        length++;</span>
+<span id="cb8-77"><a href></a>    }</span>
+<span id="cb8-78"><a href></a></span>
+<span id="cb8-79"><a href></a>    private void resize() {</span>
+<span id="cb8-80"><a href></a>        size *= 2;</span>
+<span id="cb8-81"><a href></a>        double[] newNumbers = new double[size];</span>
+<span id="cb8-82"><a href></a>        for (int i=0;i&lt; numbers.length;i++) {</span>
+<span id="cb8-83"><a href></a>            newNumbers[i] = numbers[i];</span>
+<span id="cb8-84"><a href></a>        }</span>
+<span id="cb8-85"><a href></a>        numbers = newNumbers;</span>
+<span id="cb8-86"><a href></a>    }</span>
+<span id="cb8-87"><a href></a></span>
+<span id="cb8-88"><a href></a>    @Override</span>
+<span id="cb8-89"><a href></a>    public String toString() {</span>
+<span id="cb8-90"><a href></a>        String output = &quot;&quot;;</span>
+<span id="cb8-91"><a href></a>        for (int i=0;i &lt; length;i++) {</span>
+<span id="cb8-92"><a href></a>            output += numbers[i] + &quot; &quot;;</span>
+<span id="cb8-93"><a href></a>        }</span>
+<span id="cb8-94"><a href></a>        return output.trim();</span>
+<span id="cb8-95"><a href></a>    }</span>
 <span id="cb8-96"><a href></a></span>
-<span id="cb8-97"><a href></a>        for (int i = 0; i &lt; length; i++) {</span>
-<span id="cb8-98"><a href></a>            if (numbers[i] != anotherCalc.getAt(i)) return false;</span>
-<span id="cb8-99"><a href></a>        }</span>
+<span id="cb8-97"><a href></a>    @Override</span>
+<span id="cb8-98"><a href></a>    public boolean equals(Object obj) {</span>
+<span id="cb8-99"><a href></a>        if (this == obj) return true;</span>
 <span id="cb8-100"><a href></a></span>
-<span id="cb8-101"><a href></a>        return true;</span>
-<span id="cb8-102"><a href></a>    }</span>
-<span id="cb8-103"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-101"><a href></a>        if (!(obj instanceof ArrayCalculator anotherCalc)) return false;</span>
+<span id="cb8-102"><a href></a></span>
+<span id="cb8-103"><a href></a>        if (length != anotherCalc.getLength()) return false;</span>
+<span id="cb8-104"><a href></a></span>
+<span id="cb8-105"><a href></a>        for (int i = 0; i &lt; length; i++) {</span>
+<span id="cb8-106"><a href></a>            if (numbers[i] != anotherCalc.getAt(i)) return false;</span>
+<span id="cb8-107"><a href></a>        }</span>
+<span id="cb8-108"><a href></a></span>
+<span id="cb8-109"><a href></a>        return true;</span>
+<span id="cb8-110"><a href></a>    }</span>
+<span id="cb8-111"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="looking-back" class="slide level2">
 <h2>Looking Back</h2>
