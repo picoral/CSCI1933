@@ -1106,13 +1106,10 @@ margin-right: 0; }
 <section id="part-1-solution" class="slide level2">
 <h2>Part 1 — Solution</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href></a>public interface Notification {</span>
-<span id="cb1-2"><a href></a></span>
-<span id="cb1-3"><a href></a>    String getRecipient();</span>
-<span id="cb1-4"><a href></a></span>
-<span id="cb1-5"><a href></a>    String getMessage();</span>
-<span id="cb1-6"><a href></a></span>
-<span id="cb1-7"><a href></a>    void send();</span>
-<span id="cb1-8"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href></a>    String getRecipient();</span>
+<span id="cb1-3"><a href></a>    String getMessage();</span>
+<span id="cb1-4"><a href></a>    void send();</span>
+<span id="cb1-5"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="part-2-implement-the-interface" class="slide level2">
 <h2>Part 2 — Implement the Interface</h2>
@@ -1228,6 +1225,15 @@ margin-right: 0; }
 <span id="cb6-4"><a href></a>        }</span>
 <span id="cb6-5"><a href></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="submit-solution-to-gradescope" class="slide level2">
+<h2>Submit solution to gradescope</h2>
+<p>Submit your solution files to <a href="https://www.gradescope.com/courses/1234179/assignments/7729632/">gradescope</a>:</p>
+<ul>
+<li>Notification.java</li>
+<li>TextNotification.java</li>
+<li>EmailNotification.java</li>
+</ul>
+</section>
 <section id="discussion-questions" class="slide level2">
 <h2>Discussion Questions</h2>
 <ol type="1">
@@ -1243,7 +1249,7 @@ margin-right: 0; }
 <li>Is <code>100</code> smaller, equal, or larger than <code>50</code>?</li>
 <li>Is <code>apple</code> smaller, equal, or larger than <code>kiwi</code>?</li>
 </ul>
-<p>What if we have chairs? How to we compare chairs?</p>
+<p>What if we have notifications or chairs? How to we compare chairs?</p>
 </section>
 <section id="the-comparable-interface-1" class="slide level2">
 <h2>The <code>Comparable</code> interface</h2>
@@ -1270,16 +1276,18 @@ margin-right: 0; }
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href></a>import java.util.Arrays;</span>
 <span id="cb7-2"><a href></a></span>
 <span id="cb7-3"><a href></a>Chair[] chairs = new Chair[]{</span>
-<span id="cb7-4"><a href></a>                new Chair(4, 5),</span>
-<span id="cb7-5"><a href></a>                new Chair(4, 10),</span>
-<span id="cb7-6"><a href></a>                new Chair(10, 5)</span>
-<span id="cb7-7"><a href></a>        };</span>
-<span id="cb7-8"><a href></a></span>
-<span id="cb7-9"><a href></a>Arrays.sort(chairs); // sorting based on the compareTo method</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-4"><a href></a>                       new Chair(10, 15),</span>
+<span id="cb7-5"><a href></a>                       new Chair(4, 10),</span>
+<span id="cb7-6"><a href></a>                       new Chair(10, 5),</span>
+<span id="cb7-7"><a href></a>                       new Chair(1, 5)</span>
+<span id="cb7-8"><a href></a>                     };</span>
+<span id="cb7-9"><a href></a></span>
+<span id="cb7-10"><a href></a>Arrays.sort(chairs); // sorting based on the compareTo method</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Submit your <code>Chair.java</code> file to <a href="https://www.gradescope.com/courses/1234179/assignments/7731537/">gradescope</a></p>
 </section>
 <section id="solution" class="slide level2">
 <h2>Solution</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href></a>public class Chair implements  Comparable&lt;Chair&gt; {</span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href></a>public class Chair implements Comparable&lt;Chair&gt; {</span>
 <span id="cb8-2"><a href></a>    private int width;</span>
 <span id="cb8-3"><a href></a>    private int depth;</span>
 <span id="cb8-4"><a href></a></span>
@@ -1312,6 +1320,14 @@ margin-right: 0; }
 <span id="cb8-31"><a href></a>        return width + &quot; &quot; + depth;</span>
 <span id="cb8-32"><a href></a>    }</span>
 <span id="cb8-33"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="more-practice" class="slide level2">
+<h2>More Practice</h2>
+<p>How would we implement <code>compareTo(Notification other)</code> in our <code>Notification</code> project so that our <code>Notification[]</code> array would still work?</p>
+<ul>
+<li>Problem: We cannot use the <code>implements</code> on an interface</li>
+<li>Solution: abstract class</li>
+</ul>
 </section>
 <section id="looking-back" class="slide level2">
 <h2>Looking Back</h2>
