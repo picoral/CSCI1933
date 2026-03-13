@@ -1110,6 +1110,7 @@ margin-right: 0; }
 <ul>
 <li>Stack as a linked list vs. array implementation
 <ul>
+<li>remember that stacks grow and shrink from only one end</li>
 <li><a href="code/UseStack.Java">Download UseStack.java</a></li>
 <li><a href="code/Node.Java">Download Node.java</a></li>
 </ul></li>
@@ -1231,7 +1232,6 @@ margin-right: 0; }
 <h2>Queues</h2>
 <ul>
 <li>FIFO – First In, First Out</li>
-<li>Implementations: arrays, linked nodes</li>
 <li>Queue basics:
 <ul>
 <li><code>enqueue()</code> (adds to the end of the queue)</li>
@@ -1261,8 +1261,100 @@ margin-right: 0; }
 <span id="cb4-17"><a href></a>    boolean isEmpty();</span>
 <span id="cb4-18"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="implementation-of-the-queue-interface" class="slide level2">
+<h2>Implementation of the Queue Interface</h2>
+<p>Queue as a linked list vs. array implementation</p>
+<ul>
+<li>Linked List implementation – keep <code>head</code> and <code>tail</code> like we did for our first Linked List implementation</li>
+<li>Array queue implementation requires some creativity because the “filled” portion of the array will tend to “move” upwards in the array with potential for lots of wasted space</li>
+</ul>
+</section>
+<section id="circular-array" class="slide level2">
+<h2>Circular Array</h2>
+<ul>
+<li>Keep track of two array indices: front, rear</li>
+<li>Front index is not necessarily &lt; rear index</li>
+<li>Use <code>%</code> operator to “wrap” around the array (for <code>toString</code> for example)</li>
+<li>This allows for the utilization of the entire array</li>
+<li>Array is ful if number of <code>count = array.length</code></li>
+</ul>
+<p>Resizing?</p>
+</section>
+<section id="arrayqueue" class="slide level2">
+<h2>ArrayQueue</h2>
+<p>Problem: this is not dealing with what happend when <code>count = array.length</code></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href></a>public class ArrayQueue&lt;T&gt; implements Queue&lt;T&gt;{</span>
+<span id="cb5-2"><a href></a>    private T[] queue;</span>
+<span id="cb5-3"><a href></a>    private int count;</span>
+<span id="cb5-4"><a href></a>    private int front;</span>
+<span id="cb5-5"><a href></a>    private int rear;</span>
+<span id="cb5-6"><a href></a>    private int size;</span>
+<span id="cb5-7"><a href></a></span>
+<span id="cb5-8"><a href></a>    public ArrayQueue(int size) {</span>
+<span id="cb5-9"><a href></a>        queue = (T[]) new Object[size];</span>
+<span id="cb5-10"><a href></a>        count = 0;</span>
+<span id="cb5-11"><a href></a>        front = 0;</span>
+<span id="cb5-12"><a href></a>        rear = 0;</span>
+<span id="cb5-13"><a href></a>        this.size = size;</span>
+<span id="cb5-14"><a href></a>    }</span>
+<span id="cb5-15"><a href></a></span>
+<span id="cb5-16"><a href></a>    @Override</span>
+<span id="cb5-17"><a href></a>    public T dequeue() {</span>
+<span id="cb5-18"><a href></a>        T out = queue[front];</span>
+<span id="cb5-19"><a href></a>        queue[front] = null;</span>
+<span id="cb5-20"><a href></a>        front++;</span>
+<span id="cb5-21"><a href></a>        count--;</span>
+<span id="cb5-22"><a href></a>        if (front == size) front = 0;</span>
+<span id="cb5-23"><a href></a>        return out;</span>
+<span id="cb5-24"><a href></a>    }</span>
+<span id="cb5-25"><a href></a></span>
+<span id="cb5-26"><a href></a>    @Override</span>
+<span id="cb5-27"><a href></a>    public void enqueue(T data) {</span>
+<span id="cb5-28"><a href></a>        queue[rear] = data;</span>
+<span id="cb5-29"><a href></a>        count++;</span>
+<span id="cb5-30"><a href></a>        rear++;</span>
+<span id="cb5-31"><a href></a>        if (rear == size) rear = 0;</span>
+<span id="cb5-32"><a href></a>    }</span>
+<span id="cb5-33"><a href></a></span>
+<span id="cb5-34"><a href></a>    @Override</span>
+<span id="cb5-35"><a href></a>    public boolean isEmpty() {</span>
+<span id="cb5-36"><a href></a>        return count == 0;</span>
+<span id="cb5-37"><a href></a>    }</span>
+<span id="cb5-38"><a href></a></span>
+<span id="cb5-39"><a href></a>    @Override</span>
+<span id="cb5-40"><a href></a>    public String toString() {</span>
+<span id="cb5-41"><a href></a>        String out = &quot;&quot;;</span>
+<span id="cb5-42"><a href></a>        for (int i=front;i&lt;front+count;i++) {</span>
+<span id="cb5-43"><a href></a>            if (queue[i%size] != null) out += i%size + &quot; - &quot; + queue[i%size] + &quot; &quot;;</span>
+<span id="cb5-44"><a href></a>        }</span>
+<span id="cb5-45"><a href></a></span>
+<span id="cb5-46"><a href></a>        return out.trim();</span>
+<span id="cb5-47"><a href></a>    }</span>
+<span id="cb5-48"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="exception-handling" class="slide level2">
 <h2>Exception handling</h2>
+<ul>
+<li>Checked vs. un-checked exceptions</li>
+<li>Checked exceptions must be checked!</li>
+<li>Methods that throw checked exceptions must have a “throws” clause on signature</li>
+<li>But, not if the checked exception is caught</li>
+</ul>
+</section>
+<section id="exceptions" class="slide level2">
+<h2>Exceptions</h2>
+<ul>
+<li>Exception “hierarchy” based on inheritance</li>
+<li>Checked and un-checked exceptions and the throws clause on a method signature</li>
+<li>“Throwing” vs. instantiating an exception</li>
+<li>Try/catch blocks and cascading catch blocks</li>
+<li>The finally statement – executes ALWAYS</li>
+</ul>
+<p>You can build your own Exception class</p>
+</section>
+<section id="throwing-new-vs.-throwing-existing" class="slide level2">
+<h2>Throwing new vs. Throwing existing</h2>
+<p>What is the advantage to creating an entirely new Exception class (and throwing it) over just throwing an instance of an existing Exception with a custom “message?”</p>
 
 </section></section>
     </div>
