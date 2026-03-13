@@ -1062,7 +1062,12 @@ margin-right: 0; }
 </div>
 
 </section>
-<section id="stacks" class="slide level2">
+<section>
+<section id="stacks" class="title-slide slide level1 center">
+<h1>Stacks</h1>
+
+</section>
+<section id="stacks-1" class="slide level2">
 <h2>Stacks</h2>
 <ul>
 <li>Can be implemented as arrays or linked lists</li>
@@ -1074,18 +1079,140 @@ margin-right: 0; }
 <section id="solution" class="slide level2">
 <h2>Solution</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href></a>public interface Stack&lt;T&gt; {</span>
-<span id="cb1-2"><a href></a>  void push(T data);</span>
-<span id="cb1-3"><a href></a>  T pop();</span>
-<span id="cb1-4"><a href></a>  T top();</span>
-<span id="cb1-5"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href></a></span>
+<span id="cb1-3"><a href></a>    /**</span>
+<span id="cb1-4"><a href></a>     * Stack is LIFO – Last In, First Ou</span>
+<span id="cb1-5"><a href></a>     * add a new value (with T data) to the top of the stack</span>
+<span id="cb1-6"><a href></a>     * @param data of generic type T</span>
+<span id="cb1-7"><a href></a>     */</span>
+<span id="cb1-8"><a href></a>    void push(T data);</span>
+<span id="cb1-9"><a href></a></span>
+<span id="cb1-10"><a href></a>    /**</span>
+<span id="cb1-11"><a href></a>     * Removes and returns the value at the top of the stack</span>
+<span id="cb1-12"><a href></a>     * @return the value stored in the node at the top of the stack</span>
+<span id="cb1-13"><a href></a>     */</span>
+<span id="cb1-14"><a href></a>    T pop();</span>
+<span id="cb1-15"><a href></a></span>
+<span id="cb1-16"><a href></a>    /**</span>
+<span id="cb1-17"><a href></a>     * Looks at the value at the top of the stack without removing it</span>
+<span id="cb1-18"><a href></a>     * @return the value stored in the node at the top of the stack</span>
+<span id="cb1-19"><a href></a>     */</span>
+<span id="cb1-20"><a href></a>    T top();</span>
+<span id="cb1-21"><a href></a>  </span>
+<span id="cb1-22"><a href></a>   /**</span>
+<span id="cb1-23"><a href></a>     * @return true if Stack is empty, false otherwise</span>
+<span id="cb1-24"><a href></a>     */</span>
+<span id="cb1-25"><a href></a>    boolean isEmpty();</span>
+<span id="cb1-26"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="linked-list-implementation-of-the-stack-interface" class="slide level2">
-<h2>Linked List Implementation of the Stack Interface</h2>
+<section id="implementation-of-the-stack-interface" class="slide level2">
+<h2>Implementation of the Stack Interface</h2>
 <ul>
-<li>Stack as a linked list vs. array implementation</li>
+<li>Stack as a linked list vs. array implementation
+<ul>
+<li><a href="code/UseStack.Java">Download UseStack.java</a></li>
+<li><a href="code/Node.Java">Download Node.java</a></li>
+</ul></li>
 <li>Complexity – how does runtime compare?</li>
 <li>Which is better (array or linked list)?</li>
 </ul>
+<p>Submit your <code>Stack.java</code>, <code>ArrayStack.java</code> and <code>LinkedStack.java</code> to gradescope</p>
+</section>
+<section id="array-implementation-with-issues" class="slide level2">
+<h2>Array Implementation (with issues)</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href></a>public class ArrayStack&lt;T&gt; implements Stack&lt;T&gt;{</span>
+<span id="cb2-2"><a href></a>    private T[] stack;</span>
+<span id="cb2-3"><a href></a>    private int count;</span>
+<span id="cb2-4"><a href></a></span>
+<span id="cb2-5"><a href></a>    public ArrayStack(int size) {</span>
+<span id="cb2-6"><a href></a>        stack = (T[]) new Object[size];</span>
+<span id="cb2-7"><a href></a>        count = 0;</span>
+<span id="cb2-8"><a href></a>    }</span>
+<span id="cb2-9"><a href></a></span>
+<span id="cb2-10"><a href></a>    @Override</span>
+<span id="cb2-11"><a href></a>    public void push(T data) {</span>
+<span id="cb2-12"><a href></a>        stack[count] = data;</span>
+<span id="cb2-13"><a href></a>        count++; // what happens when count is equal or greater than size?</span>
+<span id="cb2-14"><a href></a>    }</span>
+<span id="cb2-15"><a href></a></span>
+<span id="cb2-16"><a href></a>    @Override</span>
+<span id="cb2-17"><a href></a>    public T pop() {</span>
+<span id="cb2-18"><a href></a>        if (count == 0) return null;</span>
+<span id="cb2-19"><a href></a>        count--;</span>
+<span id="cb2-20"><a href></a>        return stack[count];</span>
+<span id="cb2-21"><a href></a>    }</span>
+<span id="cb2-22"><a href></a></span>
+<span id="cb2-23"><a href></a>    @Override</span>
+<span id="cb2-24"><a href></a>    public T top() {</span>
+<span id="cb2-25"><a href></a>        if (count == 0) return null;</span>
+<span id="cb2-26"><a href></a>        return stack[count-1];</span>
+<span id="cb2-27"><a href></a>    }</span>
+<span id="cb2-28"><a href></a></span>
+<span id="cb2-29"><a href></a>    @Override</span>
+<span id="cb2-30"><a href></a>    public boolean isEmpty() {</span>
+<span id="cb2-31"><a href></a>        return count == 0;</span>
+<span id="cb2-32"><a href></a>    }</span>
+<span id="cb2-33"><a href></a></span>
+<span id="cb2-34"><a href></a>    @Override</span>
+<span id="cb2-35"><a href></a>    public String toString() {</span>
+<span id="cb2-36"><a href></a>        String out = &quot;&quot;;</span>
+<span id="cb2-37"><a href></a>        for (int i=count-1; i &gt;= 0; i--)</span>
+<span id="cb2-38"><a href></a>            out += &quot;| &quot; + stack[i] + &quot;\t|\n&quot;;</span>
+<span id="cb2-39"><a href></a>        return out;</span>
+<span id="cb2-40"><a href></a>    }</span>
+<span id="cb2-41"><a href></a>}</span>
+<span id="cb2-42"><a href></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="linked-list-implementation" class="slide level2">
+<h2>Linked List Implementation</h2>
+<p><a href="code/Node.Java">Download Node.java</a></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href></a>public class LinkedStack&lt;T&gt; implements Stack&lt;T&gt;{</span>
+<span id="cb3-2"><a href></a>    private Node&lt;T&gt; top;</span>
+<span id="cb3-3"><a href></a></span>
+<span id="cb3-4"><a href></a>    public LinkedStack() {</span>
+<span id="cb3-5"><a href></a>        top = null;</span>
+<span id="cb3-6"><a href></a>    }</span>
+<span id="cb3-7"><a href></a></span>
+<span id="cb3-8"><a href></a>    @Override</span>
+<span id="cb3-9"><a href></a>    public void push(T data) {</span>
+<span id="cb3-10"><a href></a>        Node&lt;T&gt; newTop = new Node&lt;&gt;(data);</span>
+<span id="cb3-11"><a href></a>        newTop.setNext(top);</span>
+<span id="cb3-12"><a href></a>        if (!isEmpty()) top.setNext(top.getNext());</span>
+<span id="cb3-13"><a href></a>        top = newTop;</span>
+<span id="cb3-14"><a href></a>    }</span>
+<span id="cb3-15"><a href></a></span>
+<span id="cb3-16"><a href></a>    @Override</span>
+<span id="cb3-17"><a href></a>    public T pop() {</span>
+<span id="cb3-18"><a href></a>        if (!isEmpty()) {</span>
+<span id="cb3-19"><a href></a>            T out = top.getData();</span>
+<span id="cb3-20"><a href></a>            top = top.getNext();</span>
+<span id="cb3-21"><a href></a>            return out;</span>
+<span id="cb3-22"><a href></a>        }</span>
+<span id="cb3-23"><a href></a>        return null;</span>
+<span id="cb3-24"><a href></a>    }</span>
+<span id="cb3-25"><a href></a></span>
+<span id="cb3-26"><a href></a>    @Override</span>
+<span id="cb3-27"><a href></a>    public T top() {</span>
+<span id="cb3-28"><a href></a>        if (!isEmpty()) return top.getData();</span>
+<span id="cb3-29"><a href></a>        return null;</span>
+<span id="cb3-30"><a href></a>    }</span>
+<span id="cb3-31"><a href></a></span>
+<span id="cb3-32"><a href></a>    @Override</span>
+<span id="cb3-33"><a href></a>    public boolean isEmpty() {</span>
+<span id="cb3-34"><a href></a>        return top == null;</span>
+<span id="cb3-35"><a href></a>    }</span>
+<span id="cb3-36"><a href></a></span>
+<span id="cb3-37"><a href></a>    @Override</span>
+<span id="cb3-38"><a href></a>    public String toString() {</span>
+<span id="cb3-39"><a href></a>        String out = &quot;&quot;;</span>
+<span id="cb3-40"><a href></a>        Node&lt;T&gt; currNode = top;</span>
+<span id="cb3-41"><a href></a>        while (currNode != null) {</span>
+<span id="cb3-42"><a href></a>            out += &quot;| &quot; + currNode.getData() + &quot;\t|\n&quot;;</span>
+<span id="cb3-43"><a href></a>            currNode = currNode.getNext();</span>
+<span id="cb3-44"><a href></a>        }</span>
+<span id="cb3-45"><a href></a>        return out;</span>
+<span id="cb3-46"><a href></a>    }</span>
+<span id="cb3-47"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="stack-applications" class="slide level2">
 <h2>Stack Applications</h2>
@@ -1094,27 +1221,50 @@ margin-right: 0; }
 <li>Expression evaluation (infix &lt;–&gt; postfix)</li>
 <li>Implementing a recursive process using iteration (and a stack)</li>
 </ul>
+</section></section>
+<section>
+<section id="queues" class="title-slide slide level1 center">
+<h1>Queues</h1>
+
 </section>
-<section id="queues" class="slide level2">
+<section id="queues-1" class="slide level2">
 <h2>Queues</h2>
 <ul>
 <li>FIFO – First In, First Out</li>
 <li>Implementations: arrays, linked nodes</li>
-<li>Queue basics: <code>add()</code>, <code>remove()</code></li>
+<li>Queue basics:
+<ul>
+<li><code>enqueue()</code> (adds to the end of the queue)</li>
+<li><code>dequeue()</code> (removes from the beginning of the queue)</li>
+</ul></li>
 </ul>
 <p>Write up a generic queue interface</p>
 </section>
 <section id="solution-1" class="slide level2">
 <h2>Solution</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href></a>public interface Queue&lt;T&gt; {</span>
-<span id="cb2-2"><a href></a>  void add(T data);</span>
-<span id="cb2-3"><a href></a>  T remove();</span>
-<span id="cb2-4"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href></a>public interface Queue&lt;T&gt; {</span>
+<span id="cb4-2"><a href></a>    /**</span>
+<span id="cb4-3"><a href></a>     * Queue is First In, First Out</span>
+<span id="cb4-4"><a href></a>     * @param data is the value to be added to the end of the queue</span>
+<span id="cb4-5"><a href></a>     */</span>
+<span id="cb4-6"><a href></a>    void enqueue(T data);</span>
+<span id="cb4-7"><a href></a></span>
+<span id="cb4-8"><a href></a>    /**</span>
+<span id="cb4-9"><a href></a>     * Removes the value from the beginning of the queue and returns it</span>
+<span id="cb4-10"><a href></a>     * @return the value of type T at the beginning of the queue</span>
+<span id="cb4-11"><a href></a>     */</span>
+<span id="cb4-12"><a href></a>    T dequeue();</span>
+<span id="cb4-13"><a href></a></span>
+<span id="cb4-14"><a href></a>    /**</span>
+<span id="cb4-15"><a href></a>     * @return true if Queue is empty, false otherwise</span>
+<span id="cb4-16"><a href></a>     */</span>
+<span id="cb4-17"><a href></a>    boolean isEmpty();</span>
+<span id="cb4-18"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exception-handling" class="slide level2">
 <h2>Exception handling</h2>
 
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
