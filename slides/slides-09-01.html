@@ -1401,7 +1401,11 @@ returns front, no removal
 <ul>
 <li>Keep track of two array indices: front, rear</li>
 <li>Front index is not necessarily &lt; rear index</li>
-<li>Use <code>%</code> operator to “wrap” around the array (for <code>toString</code> for example)</li>
+<li>Use <code>%</code> operator to “wrap” around the array
+<ul>
+<li>enqueue: back = (back + 1) % capacity</li>
+<li>dequeue: front = (front + 1) % capacity</li>
+</ul></li>
 <li>This allows for the utilization of the entire array</li>
 <li>Array is ful if number of <code>count = array.length</code></li>
 </ul>
