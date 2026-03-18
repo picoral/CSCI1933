@@ -442,7 +442,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="CSCI 1933 – Introduction to Algorithms and Data StructuresAdriana Picoral">
-  <title>Stacks and Queue</title>
+  <title>Exceptions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -1051,7 +1051,7 @@ margin-right: 0; }
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Stacks and Queue</h1>
+  <h1 class="title">Exceptions</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -1062,457 +1062,132 @@ margin-right: 0; }
 </div>
 
 </section>
-<section>
-<section id="stacks" class="title-slide slide level1 center">
-<h1>Stacks</h1>
-
-</section>
-<section id="stacks-1" class="slide level2">
-<h2>Stacks</h2>
-<pre><code>│         │
-│         │
-│         │  
-├─────────┤    
-│    D    │    ← top
-├─────────┤   
-│    C    │  
-├─────────┤  
-│    B    │ 
-├─────────┤  
-│    A    │  
-└─────────┘  </code></pre>
-</section>
-<section id="stacks-2" class="slide level2">
-<h2>Stacks</h2>
-<pre><code>│    ↓    │
-├─────────┤   
-│    E    │    ← top
-├─────────┤    
-│    D    │
-├─────────┤   
-│    C    │  
-├─────────┤  
-│    B    │ 
-├─────────┤  
-│    A    │  
-└─────────┘       </code></pre>
-<p>push(E)</p>
-</section>
-<section id="stacks-3" class="slide level2">
-<h2>Stacks</h2>
-<pre><code>│    F    │    ← top
-├─────────┤   
-│    E    │
-├─────────┤    
-│    D    │
-├─────────┤   
-│    C    │  
-├─────────┤  
-│    B    │ 
-├─────────┤  
-│    A    │  
-└─────────┘       </code></pre>
-<p>push(F)</p>
-</section>
-<section id="stacks-4" class="slide level2">
-<h2>Stacks</h2>
-<pre><code>│         │
-├─────────┤   
-│    E    │    ← top
-├─────────┤    
-│    D    │
-├─────────┤   
-│    C    │  
-├─────────┤  
-│    B    │ 
-├─────────┤  
-│    A    │  
-└─────────┘   </code></pre>
-<p>pop() → returns F<br>
-returns top and updates it (removes top)</p>
-</section>
-<section id="stacks-5" class="slide level2">
-<h2>Stacks</h2>
-<pre><code>│         │
-│         │
-│         │  
-├─────────┤    
-│    D    │    ← top
-├─────────┤   
-│    C    │  
-├─────────┤  
-│    B    │ 
-├─────────┤  
-│    A    │  
-└─────────┘  </code></pre>
-<p>pop() → returns E returns top and updates it (removes top)</p>
-</section>
-<section id="stacks-6" class="slide level2">
-<h2>Stacks</h2>
+<section id="checked-vs.-un-checked-exceptions" class="slide level2">
+<h2>Checked vs. un-checked exceptions</h2>
 <ul>
-<li>Can be implemented as arrays or linked lists</li>
-<li>Features – <code>push()</code> and <code>pop()</code>, others?</li>
-<li>LIFO – Last In, First Out</li>
-</ul>
-<p>Write up a generic stack interface</p>
-</section>
-<section id="solution" class="slide level2">
-<h2>Solution</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href></a>public interface Stack&lt;T&gt; {</span>
-<span id="cb6-2"><a href></a></span>
-<span id="cb6-3"><a href></a>    /**</span>
-<span id="cb6-4"><a href></a>     * Stack is LIFO – Last In, First Ou</span>
-<span id="cb6-5"><a href></a>     * add a new value (with T data) to the top of the stack</span>
-<span id="cb6-6"><a href></a>     * @param data of generic type T</span>
-<span id="cb6-7"><a href></a>     */</span>
-<span id="cb6-8"><a href></a>    void push(T data);</span>
-<span id="cb6-9"><a href></a></span>
-<span id="cb6-10"><a href></a>    /**</span>
-<span id="cb6-11"><a href></a>     * Removes and returns the value at the top of the stack</span>
-<span id="cb6-12"><a href></a>     * @return the value stored in the node at the top of the stack</span>
-<span id="cb6-13"><a href></a>     */</span>
-<span id="cb6-14"><a href></a>    T pop();</span>
-<span id="cb6-15"><a href></a></span>
-<span id="cb6-16"><a href></a>    /**</span>
-<span id="cb6-17"><a href></a>     * Looks at the value at the top of the stack without removing it</span>
-<span id="cb6-18"><a href></a>     * @return the value stored in the node at the top of the stack</span>
-<span id="cb6-19"><a href></a>     */</span>
-<span id="cb6-20"><a href></a>    T top();</span>
-<span id="cb6-21"><a href></a>  </span>
-<span id="cb6-22"><a href></a>   /**</span>
-<span id="cb6-23"><a href></a>     * @return true if Stack is empty, false otherwise</span>
-<span id="cb6-24"><a href></a>     */</span>
-<span id="cb6-25"><a href></a>    boolean isEmpty();</span>
-<span id="cb6-26"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="implementation-of-the-stack-interface" class="slide level2">
-<h2>Implementation of the Stack Interface</h2>
-<ul>
-<li>Stack as a linked list vs. array implementation
-<ul>
-<li>remember that stacks grow and shrink from only one end</li>
-<li><a href="code/UseStack.Java">Download UseStack.java</a></li>
-<li><a href="code/Node.Java">Download Node.java</a></li>
-</ul></li>
-<li>Complexity – how does runtime compare?</li>
-<li>Which is better (array or linked list)?</li>
-</ul>
-<p>Submit your <code>Stack.java</code>, <code>ArrayStack.java</code> and <code>LinkedStack.java</code> to <a href="https://www.gradescope.com/courses/1234179/assignments/7832550">gradescope</a></p>
-</section>
-<section id="array-implementation-with-issues" class="slide level2">
-<h2>Array Implementation (with issues)</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href></a>public class ArrayStack&lt;T&gt; implements Stack&lt;T&gt;{</span>
-<span id="cb7-2"><a href></a>    private T[] stack;</span>
-<span id="cb7-3"><a href></a>    private int count;</span>
-<span id="cb7-4"><a href></a></span>
-<span id="cb7-5"><a href></a>    public ArrayStack(int size) {</span>
-<span id="cb7-6"><a href></a>        stack = (T[]) new Object[size];</span>
-<span id="cb7-7"><a href></a>        count = 0;</span>
-<span id="cb7-8"><a href></a>    }</span>
-<span id="cb7-9"><a href></a></span>
-<span id="cb7-10"><a href></a>    @Override</span>
-<span id="cb7-11"><a href></a>    public void push(T data) {</span>
-<span id="cb7-12"><a href></a>        stack[count] = data;</span>
-<span id="cb7-13"><a href></a>        count++; // what happens when count is equal or greater than size?</span>
-<span id="cb7-14"><a href></a>    }</span>
-<span id="cb7-15"><a href></a></span>
-<span id="cb7-16"><a href></a>    @Override</span>
-<span id="cb7-17"><a href></a>    public T pop() {</span>
-<span id="cb7-18"><a href></a>        if (count == 0) return null;</span>
-<span id="cb7-19"><a href></a>        count--;</span>
-<span id="cb7-20"><a href></a>        return stack[count];</span>
-<span id="cb7-21"><a href></a>    }</span>
-<span id="cb7-22"><a href></a></span>
-<span id="cb7-23"><a href></a>    @Override</span>
-<span id="cb7-24"><a href></a>    public T top() {</span>
-<span id="cb7-25"><a href></a>        if (count == 0) return null;</span>
-<span id="cb7-26"><a href></a>        return stack[count-1];</span>
-<span id="cb7-27"><a href></a>    }</span>
-<span id="cb7-28"><a href></a></span>
-<span id="cb7-29"><a href></a>    @Override</span>
-<span id="cb7-30"><a href></a>    public boolean isEmpty() {</span>
-<span id="cb7-31"><a href></a>        return count == 0;</span>
-<span id="cb7-32"><a href></a>    }</span>
-<span id="cb7-33"><a href></a></span>
-<span id="cb7-34"><a href></a>    @Override</span>
-<span id="cb7-35"><a href></a>    public String toString() {</span>
-<span id="cb7-36"><a href></a>        String out = &quot;&quot;;</span>
-<span id="cb7-37"><a href></a>        for (int i=count-1; i &gt;= 0; i--)</span>
-<span id="cb7-38"><a href></a>            out += &quot;| &quot; + stack[i] + &quot;\t|\n&quot;;</span>
-<span id="cb7-39"><a href></a>        return out;</span>
-<span id="cb7-40"><a href></a>    }</span>
-<span id="cb7-41"><a href></a>}</span>
-<span id="cb7-42"><a href></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="linked-list-implementation" class="slide level2">
-<h2>Linked List Implementation</h2>
-<p><a href="code/Node.Java">Download Node.java</a></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href></a>public class LinkedStack&lt;T&gt; implements Stack&lt;T&gt;{</span>
-<span id="cb8-2"><a href></a>    private Node&lt;T&gt; top;</span>
-<span id="cb8-3"><a href></a></span>
-<span id="cb8-4"><a href></a>    public LinkedStack() {</span>
-<span id="cb8-5"><a href></a>        top = null;</span>
-<span id="cb8-6"><a href></a>    }</span>
-<span id="cb8-7"><a href></a></span>
-<span id="cb8-8"><a href></a>    @Override</span>
-<span id="cb8-9"><a href></a>    public void push(T data) {</span>
-<span id="cb8-10"><a href></a>        Node&lt;T&gt; newTop = new Node&lt;&gt;(data);</span>
-<span id="cb8-11"><a href></a>        newTop.setNext(top);</span>
-<span id="cb8-12"><a href></a>        if (!isEmpty()) top.setNext(top.getNext());</span>
-<span id="cb8-13"><a href></a>        top = newTop;</span>
-<span id="cb8-14"><a href></a>    }</span>
-<span id="cb8-15"><a href></a></span>
-<span id="cb8-16"><a href></a>    @Override</span>
-<span id="cb8-17"><a href></a>    public T pop() {</span>
-<span id="cb8-18"><a href></a>        if (!isEmpty()) {</span>
-<span id="cb8-19"><a href></a>            T out = top.getData();</span>
-<span id="cb8-20"><a href></a>            top = top.getNext();</span>
-<span id="cb8-21"><a href></a>            return out;</span>
-<span id="cb8-22"><a href></a>        }</span>
-<span id="cb8-23"><a href></a>        return null;</span>
-<span id="cb8-24"><a href></a>    }</span>
-<span id="cb8-25"><a href></a></span>
-<span id="cb8-26"><a href></a>    @Override</span>
-<span id="cb8-27"><a href></a>    public T top() {</span>
-<span id="cb8-28"><a href></a>        if (!isEmpty()) return top.getData();</span>
-<span id="cb8-29"><a href></a>        return null;</span>
-<span id="cb8-30"><a href></a>    }</span>
-<span id="cb8-31"><a href></a></span>
-<span id="cb8-32"><a href></a>    @Override</span>
-<span id="cb8-33"><a href></a>    public boolean isEmpty() {</span>
-<span id="cb8-34"><a href></a>        return top == null;</span>
-<span id="cb8-35"><a href></a>    }</span>
-<span id="cb8-36"><a href></a></span>
-<span id="cb8-37"><a href></a>    @Override</span>
-<span id="cb8-38"><a href></a>    public String toString() {</span>
-<span id="cb8-39"><a href></a>        String out = &quot;&quot;;</span>
-<span id="cb8-40"><a href></a>        Node&lt;T&gt; currNode = top;</span>
-<span id="cb8-41"><a href></a>        while (currNode != null) {</span>
-<span id="cb8-42"><a href></a>            out += &quot;| &quot; + currNode.getData() + &quot;\t|\n&quot;;</span>
-<span id="cb8-43"><a href></a>            currNode = currNode.getNext();</span>
-<span id="cb8-44"><a href></a>        }</span>
-<span id="cb8-45"><a href></a>        return out;</span>
-<span id="cb8-46"><a href></a>    }</span>
-<span id="cb8-47"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="stack-applications" class="slide level2">
-<h2>Stack Applications</h2>
-<ul>
-<li>Traversing a maze, a graph, or a tree</li>
-<li>Expression evaluation (infix &lt;–&gt; postfix)</li>
-<li>Implementing a recursive process using iteration (and a stack)</li>
-</ul>
-</section></section>
-<section>
-<section id="queues" class="title-slide slide level1 center">
-<h1>Queues</h1>
-
-</section>
-<section id="queues-1" class="slide level2">
-<h2>Queues</h2>
-<pre><code>First In First Out                                                                                                                   
-
-back  ┌───┬───┬───┬───┐ front
-─────▶│ D │ C │ B │ A │──────▶
-      └───┴───┴───┴───┘</code></pre>
-</section>
-<section id="queues-2" class="slide level2">
-<h2>Queues</h2>
-<pre><code>  enqueue(E)                             
-  adds to back  
-       
-       
-back  ┌───┬───┬───┬───┬───┐  front
-─────▶│ E │ D │ C │ B │ A │──────▶
-      └───┴───┴───┴───┴───┘</code></pre>
-</section>
-<section id="queues-3" class="slide level2">
-<h2>Queues</h2>
-<pre><code>dequeue()
-removes from front
-
-
-back  ┌───┬───┬───┬───┐  front    returns A
-─────▶│ D │ C │ B │ A │──────▶
-      └───┴───┴───┴───┘
-      
-            │
-            ▼  after dequeue
-back  ┌───┬───┬───┐  front
-─────▶│ D │ C │ B │──────▶
-      └───┴───┴───┘</code></pre>
-</section>
-<section id="queues-4" class="slide level2">
-<h2>Queues</h2>
-<pre><code>peek()                       
-returns front, no removal
-
- back  ┌───┬───┬───┬───┐  front   
- ─────▶│ D │ C │ B │ A │──────▶    
-       └───┴───┴───┴───┘      
-                  
-              returns A      
-              does NOT          
-              remove it             </code></pre>
-</section>
-<section id="queues-5" class="slide level2">
-<h2>Queues</h2>
-<ul>
-<li>FIFO – First In, First Out</li>
-<li>Queue basics:
-<ul>
-<li><code>enqueue()</code> (adds to the end of the queue)</li>
-<li><code>dequeue()</code> (removes from the beginning of the queue)</li>
-</ul></li>
-</ul>
-<p>Write up a generic queue interface</p>
-</section>
-<section id="solution-1" class="slide level2">
-<h2>Solution</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb13-1"><a href></a>public interface Queue&lt;T&gt; {</span>
-<span id="cb13-2"><a href></a>    /**</span>
-<span id="cb13-3"><a href></a>     * Queue is First In, First Out</span>
-<span id="cb13-4"><a href></a>     * @param data is the value to be added to the end of the queue</span>
-<span id="cb13-5"><a href></a>     */</span>
-<span id="cb13-6"><a href></a>    void enqueue(T data);</span>
-<span id="cb13-7"><a href></a></span>
-<span id="cb13-8"><a href></a>    /**</span>
-<span id="cb13-9"><a href></a>     * Removes the value from the beginning of the queue and returns it</span>
-<span id="cb13-10"><a href></a>     * @return the value of type T at the beginning of the queue</span>
-<span id="cb13-11"><a href></a>     */</span>
-<span id="cb13-12"><a href></a>    T dequeue();</span>
-<span id="cb13-13"><a href></a></span>
-<span id="cb13-14"><a href></a>    /**</span>
-<span id="cb13-15"><a href></a>     * @return true if Queue is empty, false otherwise</span>
-<span id="cb13-16"><a href></a>     */</span>
-<span id="cb13-17"><a href></a>    boolean isEmpty();</span>
-<span id="cb13-18"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="implementation-of-the-queue-interface" class="slide level2">
-<h2>Implementation of the Queue Interface</h2>
-<p>Queue as a linked list vs. array implementation</p>
-<ul>
-<li>Linked List implementation – keep <code>head</code> and <code>tail</code> like we did for our first Linked List implementation</li>
-<li>Array queue implementation requires some creativity because the “filled” portion of the array will tend to “move” upwards in the array with potential for lots of wasted space</li>
+<li>Checked: “Something outside your code went wrong” — file missing, network dropped, database unreachable. The compiler reminds you to have a plan.</li>
+<li>Unchecked: “Your code has a bug” — you accessed a null object, went out of bounds, passed a bad argument. The fix is to write better code, not to catch the exception.</li>
 </ul>
 </section>
-<section id="circular-array" class="slide level2">
-<h2>Circular Array</h2>
+<section id="checked-exception-handling" class="slide level2">
+<h2>Checked Exception Handling</h2>
 <ul>
-<li>Keep track of two array indices: front, rear</li>
-<li>Front index is not necessarily &lt; rear index</li>
-<li>Use <code>%</code> operator to “wrap” around the array (for <code>toString</code> for example)</li>
-<li>This allows for the utilization of the entire array</li>
-<li>Array is ful if number of <code>count = array.length</code></li>
+<li>Checked exceptions must be checked!</li>
+<li>Methods that throw checked exceptions must have a <code>throws</code> clause on signature</li>
 </ul>
-<p>Resizing?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href></a>public void readFile(String path) throws IOException {</span>
+<span id="cb1-2"><a href></a>      FileReader file = new FileReader(path);  // throws checked IOException</span>
+<span id="cb1-3"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>But, not if the checked exception is caught</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href></a>public void readFile(String path) {</span>
+<span id="cb2-2"><a href></a>      try {</span>
+<span id="cb2-3"><a href></a>          FileReader file = new FileReader(path);</span>
+<span id="cb2-4"><a href></a>      } catch (IOException e) {</span>
+<span id="cb2-5"><a href></a>          System.out.println(&quot;File not found: &quot; + e.getMessage());</span>
+<span id="cb2-6"><a href></a>      }</span>
+<span id="cb2-7"><a href></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="circular-array-1" class="slide level2">
-<h2>Circular Array</h2>
-<pre><code>   0   1   2   3   4
- ┌───┬───┬───┬───┬───┐  
- │   │   │ A │ B │   │
- └───┴───┴───┴───┴───┘
- 
- front index: 2
- back index: 3
- </code></pre>
+<section id="unchecked-exceptions" class="slide level2">
+<h2>Unchecked Exceptions</h2>
+<p>The compiler does not require you to handle these. They typically represent bugs in your code — things that should not happen if the program is written correctly.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href></a>// No compiler warning -- blows up at runtime if array is length 3</span>
+<span id="cb3-2"><a href></a>  public void getElement(int[] arr) {</span>
+<span id="cb3-3"><a href></a>      System.out.println(arr[10]);  // ArrayIndexOutOfBoundsException</span>
+<span id="cb3-4"><a href></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="circular-array-2" class="slide level2">
-<h2>Circular Array</h2>
-<pre><code>   0   1   2   3   4
- ┌───┬───┬───┬───┬───┐  
- │   │   │ A │ B │ C │
- └───┴───┴───┴───┴───┘
- 
- front index: 2
- back index: 4
- </code></pre>
+<section id="exception-hierarchy" class="slide level2">
+<h2>Exception Hierarchy</h2>
+<p>Exceptions in Java are classes organized using inheritance, just like any other class hierarchy.</p>
+<pre><code>  Throwable
+  ├── Error               (serious JVM problems -- don&#39;t catch these)
+  │   ├── OutOfMemoryError
+  │   └── StackOverflowError
+  └── Exception                       (things programs should handle)
+      ├── IOException                 (checked)
+      ├── SQLException                (checked)
+      └── RuntimeException            (unchecked)
+          ├── NullPointerException
+          ├── ArrayIndexOutOfBoundsException
+          └── IllegalArgumentException</code></pre>
 </section>
-<section id="circular-array-3" class="slide level2">
-<h2>Circular Array</h2>
-<pre><code>   0   1   2   3   4
- ┌───┬───┬───┬───┬───┐  
- │ D │   │ A │ B │ C │
- └───┴───┴───┴───┴───┘
- 
- front index: 2
- back index: 0</code></pre>
+<section id="exception-hierarchy-1" class="slide level2">
+<h2>Exception Hierarchy</h2>
+<p>Because exceptions use inheritance, a catch block that catches a parent class will also catch all its subclasses:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href></a>  try {</span>
+<span id="cb5-2"><a href></a>      // ...</span>
+<span id="cb5-3"><a href></a>  } catch (RuntimeException e) {  // catches NullPointerException,</span>
+<span id="cb5-4"><a href></a>                                   // ArrayIndexOutOfBoundsException, etc.</span>
+<span id="cb5-5"><a href></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="circular-array-4" class="slide level2">
-<h2>Circular Array</h2>
-<pre><code>   0   1   2   3   4
- ┌───┬───┬───┬───┬───┐  
- │ D │   │   │ B │ C │
- └───┴───┴───┴───┴───┘
- 
- front index: 3
- back index: 0
- </code></pre>
+<section id="throwing-vs.-instantiating" class="slide level2">
+<h2>Throwing vs. Instantiating</h2>
+<p>An exception is just a regular Java object — it must be instantiated before it can be thrown. These are two separate steps:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href></a>// Instantiating only -- creates the object but nothing happens</span>
+<span id="cb6-2"><a href></a>new IllegalArgumentException(&quot;bad value&quot;);</span>
+<span id="cb6-3"><a href></a></span>
+<span id="cb6-4"><a href></a>// Throwing only -- won&#39;t compile, throw needs an exception object</span>
+<span id="cb6-5"><a href></a>throw;</span>
+<span id="cb6-6"><a href></a></span>
+<span id="cb6-7"><a href></a>// Instantiating AND throwing -- what you actually do</span>
+<span id="cb6-8"><a href></a>throw new IllegalArgumentException(&quot;bad value&quot;);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can also separate the steps:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href></a>// Instantiate first</span>
+<span id="cb7-2"><a href></a>IllegalArgumentException ex = new IllegalArgumentException(&quot;bad value&quot;);</span>
+<span id="cb7-3"><a href></a></span>
+<span id="cb7-4"><a href></a>// Throw later</span>
+<span id="cb7-5"><a href></a>throw ex;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The throw keyword is what triggers the exception and unwinds the call stack — simply creating the object does nothing on its own.</p>
 </section>
-<section id="circular-array-5" class="slide level2">
-<h2>Circular Array</h2>
-<pre><code>   0   1   2   3   4
- ┌───┬───┬───┬───┬───┐  
- │ D │ E │   │ B │ C │
- └───┴───┴───┴───┴───┘
- 
- front index: 3
- back index: 1</code></pre>
+<section id="custom-exception-class" class="slide level2">
+<h2>Custom Exception class</h2>
+<p>You can build your own Exception class – meaningful name, carries useful data, can be caught specifically. Example:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href></a>// Thrown when a withdrawal exceeds the available balance</span>
+<span id="cb8-2"><a href></a>  public class InsufficientFundsException extends Exception {</span>
+<span id="cb8-3"><a href></a>      private double amount;</span>
+<span id="cb8-4"><a href></a>      private double balance;</span>
+<span id="cb8-5"><a href></a></span>
+<span id="cb8-6"><a href></a>      public InsufficientFundsException(double amount, double balance) {</span>
+<span id="cb8-7"><a href></a>          super(&quot;Cannot withdraw $&quot; + amount + &quot;. Current balance: $&quot; + balance);</span>
+<span id="cb8-8"><a href></a>          this.amount = amount;</span>
+<span id="cb8-9"><a href></a>          this.balance = balance;</span>
+<span id="cb8-10"><a href></a>      }</span>
+<span id="cb8-11"><a href></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="arrayqueue" class="slide level2">
-<h2>ArrayQueue</h2>
-<p>Problem: this is not dealing with what happens when <code>count = array.length</code></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb19-1"><a href></a>public class ArrayQueue&lt;T&gt; implements Queue&lt;T&gt;{</span>
-<span id="cb19-2"><a href></a>    private T[] queue;</span>
-<span id="cb19-3"><a href></a>    private int count;</span>
-<span id="cb19-4"><a href></a>    private int front;</span>
-<span id="cb19-5"><a href></a>    private int rear;</span>
-<span id="cb19-6"><a href></a>    private int size;</span>
-<span id="cb19-7"><a href></a></span>
-<span id="cb19-8"><a href></a>    public ArrayQueue(int size) {</span>
-<span id="cb19-9"><a href></a>        queue = (T[]) new Object[size];</span>
-<span id="cb19-10"><a href></a>        count = 0;</span>
-<span id="cb19-11"><a href></a>        front = 0;</span>
-<span id="cb19-12"><a href></a>        rear = 0;</span>
-<span id="cb19-13"><a href></a>        this.size = size;</span>
-<span id="cb19-14"><a href></a>    }</span>
-<span id="cb19-15"><a href></a></span>
-<span id="cb19-16"><a href></a>    @Override</span>
-<span id="cb19-17"><a href></a>    public T dequeue() {</span>
-<span id="cb19-18"><a href></a>        T out = queue[front];</span>
-<span id="cb19-19"><a href></a>        queue[front] = null;</span>
-<span id="cb19-20"><a href></a>        front++;</span>
-<span id="cb19-21"><a href></a>        count--;</span>
-<span id="cb19-22"><a href></a>        if (front == size) front = 0;</span>
-<span id="cb19-23"><a href></a>        return out;</span>
-<span id="cb19-24"><a href></a>    }</span>
-<span id="cb19-25"><a href></a></span>
-<span id="cb19-26"><a href></a>    @Override</span>
-<span id="cb19-27"><a href></a>    public void enqueue(T data) {</span>
-<span id="cb19-28"><a href></a>        queue[rear] = data;</span>
-<span id="cb19-29"><a href></a>        count++;</span>
-<span id="cb19-30"><a href></a>        rear++;</span>
-<span id="cb19-31"><a href></a>        if (rear == size) rear = 0;</span>
-<span id="cb19-32"><a href></a>    }</span>
-<span id="cb19-33"><a href></a></span>
-<span id="cb19-34"><a href></a>    @Override</span>
-<span id="cb19-35"><a href></a>    public boolean isEmpty() {</span>
-<span id="cb19-36"><a href></a>        return count == 0;</span>
-<span id="cb19-37"><a href></a>    }</span>
-<span id="cb19-38"><a href></a></span>
-<span id="cb19-39"><a href></a>    @Override</span>
-<span id="cb19-40"><a href></a>    public String toString() {</span>
-<span id="cb19-41"><a href></a>        String out = &quot;&quot;;</span>
-<span id="cb19-42"><a href></a>        for (int i=front;i&lt;front+count;i++) {</span>
-<span id="cb19-43"><a href></a>            if (queue[i%size] != null) out += i%size + &quot; - &quot; + queue[i%size] + &quot; &quot;;</span>
-<span id="cb19-44"><a href></a>        }</span>
-<span id="cb19-45"><a href></a></span>
-<span id="cb19-46"><a href></a>        return out.trim();</span>
-<span id="cb19-47"><a href></a>    }</span>
-<span id="cb19-48"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="the-finally-block" class="slide level2">
+<h2>The <code>finally</code> Block</h2>
+<p>The <code>finally</code> block executes no matter what — whether an exception was thrown or not, whether it was caught or not.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href></a>  try {</span>
+<span id="cb9-2"><a href></a>      System.out.println(&quot;try&quot;);</span>
+<span id="cb9-3"><a href></a>      int result = 10 / 0;           // throws ArithmeticException</span>
+<span id="cb9-4"><a href></a>  } catch (ArithmeticException e) {</span>
+<span id="cb9-5"><a href></a>      System.out.println(&quot;catch&quot;);</span>
+<span id="cb9-6"><a href></a>  } finally {</span>
+<span id="cb9-7"><a href></a>      System.out.println(&quot;finally&quot;); // ALWAYS runs</span>
+<span id="cb9-8"><a href></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>  try
+  catch
+  finally</code></pre>
+</section>
+<section id="the-finally-block-1" class="slide level2">
+<h2>The <code>finally</code> Block</h2>
+<p>Even if the exception is not caught, finally still runs:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href></a>  try {</span>
+<span id="cb11-2"><a href></a>      System.out.println(&quot;try&quot;);</span>
+<span id="cb11-3"><a href></a>      int result = 10 / 0;</span>
+<span id="cb11-4"><a href></a>  } finally {</span>
+<span id="cb11-5"><a href></a>      System.out.println(&quot;finally&quot;); // still runs before program crashes</span>
+<span id="cb11-6"><a href></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>  try
+  finally
+  Exception in thread &quot;main&quot;...</code></pre>
+</section>
+<section id="looking-back" class="slide level2">
+<h2>Looking Back</h2>
+<p>What is the advantage to creating an entirely <code>new Exception</code> class (and throwing it) over just throwing an instance of an existing Exception with a custom “message?”</p>
 
-</section></section>
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
