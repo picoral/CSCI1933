@@ -1490,35 +1490,33 @@ returns front, no removal
 <span id="cb19-17"><a href></a>    public T dequeue() {</span>
 <span id="cb19-18"><a href></a>        T out = queue[front];</span>
 <span id="cb19-19"><a href></a>        queue[front] = null;</span>
-<span id="cb19-20"><a href></a>        front++;</span>
+<span id="cb19-20"><a href></a>        front = (front + 1) % size;</span>
 <span id="cb19-21"><a href></a>        count--;</span>
-<span id="cb19-22"><a href></a>        if (front == size) front = 0;</span>
-<span id="cb19-23"><a href></a>        return out;</span>
-<span id="cb19-24"><a href></a>    }</span>
-<span id="cb19-25"><a href></a></span>
-<span id="cb19-26"><a href></a>    @Override</span>
-<span id="cb19-27"><a href></a>    public void enqueue(T data) {</span>
-<span id="cb19-28"><a href></a>        queue[rear] = data;</span>
-<span id="cb19-29"><a href></a>        count++;</span>
-<span id="cb19-30"><a href></a>        rear++;</span>
-<span id="cb19-31"><a href></a>        if (rear == size) rear = 0;</span>
-<span id="cb19-32"><a href></a>    }</span>
-<span id="cb19-33"><a href></a></span>
-<span id="cb19-34"><a href></a>    @Override</span>
-<span id="cb19-35"><a href></a>    public boolean isEmpty() {</span>
-<span id="cb19-36"><a href></a>        return count == 0;</span>
-<span id="cb19-37"><a href></a>    }</span>
-<span id="cb19-38"><a href></a></span>
-<span id="cb19-39"><a href></a>    @Override</span>
-<span id="cb19-40"><a href></a>    public String toString() {</span>
-<span id="cb19-41"><a href></a>        String out = &quot;&quot;;</span>
-<span id="cb19-42"><a href></a>        for (int i=front;i&lt;front+count;i++) {</span>
-<span id="cb19-43"><a href></a>            if (queue[i%size] != null) out += i%size + &quot; - &quot; + queue[i%size] + &quot; &quot;;</span>
-<span id="cb19-44"><a href></a>        }</span>
-<span id="cb19-45"><a href></a></span>
-<span id="cb19-46"><a href></a>        return out.trim();</span>
-<span id="cb19-47"><a href></a>    }</span>
-<span id="cb19-48"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-22"><a href></a>        return out;</span>
+<span id="cb19-23"><a href></a>    }</span>
+<span id="cb19-24"><a href></a></span>
+<span id="cb19-25"><a href></a>    @Override</span>
+<span id="cb19-26"><a href></a>    public void enqueue(T data) {</span>
+<span id="cb19-27"><a href></a>        queue[rear] = data;</span>
+<span id="cb19-28"><a href></a>        count++;</span>
+<span id="cb19-29"><a href></a>        rear = (rear + 1) % size;</span>
+<span id="cb19-30"><a href></a>    }</span>
+<span id="cb19-31"><a href></a></span>
+<span id="cb19-32"><a href></a>    @Override</span>
+<span id="cb19-33"><a href></a>    public boolean isEmpty() {</span>
+<span id="cb19-34"><a href></a>        return count == 0;</span>
+<span id="cb19-35"><a href></a>    }</span>
+<span id="cb19-36"><a href></a></span>
+<span id="cb19-37"><a href></a>    @Override</span>
+<span id="cb19-38"><a href></a>    public String toString() {</span>
+<span id="cb19-39"><a href></a>        String out = &quot;&quot;;</span>
+<span id="cb19-40"><a href></a>        for (int i=front;i&lt;front+count;i++) {</span>
+<span id="cb19-41"><a href></a>            if (queue[i%size] != null) out += i%size + &quot; - &quot; + queue[i%size] + &quot; &quot;;</span>
+<span id="cb19-42"><a href></a>        }</span>
+<span id="cb19-43"><a href></a></span>
+<span id="cb19-44"><a href></a>        return out.trim();</span>
+<span id="cb19-45"><a href></a>    }</span>
+<span id="cb19-46"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </section></section>
     </div>
