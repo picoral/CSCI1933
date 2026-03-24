@@ -3468,8 +3468,9 @@ margin-right: 0; }
 <span id="cb2-34"><a href></a>    }</span>
 <span id="cb2-35"><a href></a></span>
 <span id="cb2-36"><a href></a>    public String toString() { return data.toString(); }</span>
-<span id="cb2-37"><a href></a></span>
-<span id="cb2-38"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-37"><a href></a>    </span>
+<span id="cb2-38"><a href></a></span>
+<span id="cb2-39"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="tree-implementation-basics" class="slide level2">
 <h2>Tree implementation (basics)</h2>
@@ -3505,7 +3506,7 @@ margin-right: 0; }
 </section>
 <section id="private-addnode" class="slide level2">
 <h2>private addNode</h2>
-<p>This cursive method should be private.</p>
+<p>This rerecursive method should be private.</p>
 <p><code>private void addNode(Node&lt;T&gt; current, Node&lt;T&gt; nodeToAdd)</code></p>
 <p>Strategy:</p>
 <ul>
@@ -3514,33 +3515,34 @@ margin-right: 0; }
 <li>If left/right child is not null, call <code>addNode</code> recursively with left/right child as current node</li>
 </ul>
 </section>
-<section id="addnode" class="slide level2">
-<h2>addNode</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href></a>private void addNode(Node&lt;T&gt; current, Node&lt;T&gt; nodeToAdd) {</span>
-<span id="cb5-2"><a href></a>  if (current.getData().compareTo(nodeToAdd.getData()) &gt; 0) {</span>
-<span id="cb5-3"><a href></a>    if (current.getLeft() == null) current.setLeft(nodeToAdd);</span>
-<span id="cb5-4"><a href></a>    else addNode(current.getLeft(), nodeToAdd);</span>
-<span id="cb5-5"><a href></a>  } else if(current.getData().compareTo(nodeToAdd.getData()) &lt; 0) {</span>
-<span id="cb5-6"><a href></a>    if (current.getRight() == null) current.setRight(nodeToAdd);</span>
-<span id="cb5-7"><a href></a>    else addNode(current.getRight(), nodeToAdd);</span>
-<span id="cb5-8"><a href></a>  }</span>
-<span id="cb5-9"><a href></a>}</span>
-<span id="cb5-10"><a href></a></span>
-<span id="cb5-11"><a href></a>public void addNode(Node&lt;T&gt; node) {</span>
-<span id="cb5-12"><a href></a>  if (root == null) root = node;</span>
-<span id="cb5-13"><a href></a>  else addNode(root, node);</span>
-<span id="cb5-14"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
 <section id="test-it" class="slide level2">
 <h2>Test it</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href></a>Tree&lt;Character&gt; tree = new Tree&lt;&gt;();</span>
-<span id="cb6-2"><a href></a></span>
-<span id="cb6-3"><a href></a>tree.addNode(new Node&lt;&gt;(&#39;M&#39;));</span>
-<span id="cb6-4"><a href></a>System.out.println(tree.getRoot().getData());</span>
-<span id="cb6-5"><a href></a></span>
-<span id="cb6-6"><a href></a>tree.addNode(new Node&lt;&gt;(&#39;O&#39;));</span>
-<span id="cb6-7"><a href></a>System.out.println(tree.getRoot().getLeft());</span>
-<span id="cb6-8"><a href></a>System.out.println(tree.getRoot().getRight().getData());</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href></a>Tree&lt;Character&gt; tree = new Tree&lt;&gt;();</span>
+<span id="cb5-2"><a href></a></span>
+<span id="cb5-3"><a href></a>tree.addNode(new Node&lt;&gt;(&#39;M&#39;));</span>
+<span id="cb5-4"><a href></a>System.out.println(tree.getRoot().getData());</span>
+<span id="cb5-5"><a href></a></span>
+<span id="cb5-6"><a href></a>tree.addNode(new Node&lt;&gt;(&#39;O&#39;));</span>
+<span id="cb5-7"><a href></a>System.out.println(tree.getRoot().getLeft());</span>
+<span id="cb5-8"><a href></a>System.out.println(tree.getRoot().getRight().getData());</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Submit your <code>Node.java</code> and <code>Tree.java</code> files to <a href="https://www.gradescope.com/courses/1234179/assignments/7879762">gradescope</a></p>
+</section>
+<section id="addnode" class="slide level2">
+<h2>addNode</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href></a>private void addNode(Node&lt;T&gt; current, Node&lt;T&gt; nodeToAdd) {</span>
+<span id="cb6-2"><a href></a>  if (current.getData().compareTo(nodeToAdd.getData()) &gt; 0) {</span>
+<span id="cb6-3"><a href></a>    if (current.getLeft() == null) current.setLeft(nodeToAdd);</span>
+<span id="cb6-4"><a href></a>    else addNode(current.getLeft(), nodeToAdd);</span>
+<span id="cb6-5"><a href></a>  } else if(current.getData().compareTo(nodeToAdd.getData()) &lt; 0) {</span>
+<span id="cb6-6"><a href></a>    if (current.getRight() == null) current.setRight(nodeToAdd);</span>
+<span id="cb6-7"><a href></a>    else addNode(current.getRight(), nodeToAdd);</span>
+<span id="cb6-8"><a href></a>  }</span>
+<span id="cb6-9"><a href></a>}</span>
+<span id="cb6-10"><a href></a></span>
+<span id="cb6-11"><a href></a>public void addNode(Node&lt;T&gt; node) {</span>
+<span id="cb6-12"><a href></a>  if (root == null) root = node;</span>
+<span id="cb6-13"><a href></a>  else addNode(root, node);</span>
+<span id="cb6-14"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="tostring" class="slide level2">
 <h2>toString</h2>
@@ -3615,6 +3617,7 @@ margin-right: 0; }
 <li>findMax</li>
 </ul>
 <p>Before you start writing code, what is the strategy here?</p>
+<p>Submit your <code>Node.java</code> and <code>Tree.java</code> to <a href="https://www.gradescope.com/courses/1234179/assignments/7880160">gradescope</a></p>
 </section>
 <section id="findmin" class="slide level2">
 <h2>findMin</h2>
@@ -3643,6 +3646,7 @@ margin-right: 0; }
 <section id="search" class="slide level2">
 <h2>Search</h2>
 <p>Before you start writing code, what is the strategy here?</p>
+<p>Submit your <code>Node.java</code> and <code>Tree.java</code> to <a href="https://www.gradescope.com/courses/1234179/assignments/7880358/">gradescope</a></p>
 </section>
 <section id="search-1" class="slide level2">
 <h2>Search</h2>
@@ -4835,6 +4839,10 @@ margin-right: 0; }
 <span id="cb12-53"><a href></a>  }</span>
 <span id="cb12-54"><a href></a>  </span>
 <span id="cb12-55"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="gradescope-exercise" class="slide level2">
+<h2>Gradescope Exercise</h2>
+<p>Complete <a href="https://www.gradescope.com/courses/1234179/assignments/7880403">gradescope’s exercise on BST node removal</a></p>
 </section>
 <section id="recap" class="slide level2">
 <h2>Recap</h2>
