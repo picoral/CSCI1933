@@ -3056,12 +3056,14 @@ vertical-align: -.125em;
   <ul>
   <li><a href="#data-structures" id="toc-data-structures" class="nav-link active" data-scroll-target="#data-structures"><span class="header-section-number">1</span> Data Structures</a></li>
   <li><a href="#read-code" id="toc-read-code" class="nav-link" data-scroll-target="#read-code"><span class="header-section-number">2</span> Read Code</a></li>
-  <li><a href="#write-code" id="toc-write-code" class="nav-link" data-scroll-target="#write-code"><span class="header-section-number">3</span> Write code</a></li>
-  <li><a href="#key" id="toc-key" class="nav-link" data-scroll-target="#key"><span class="header-section-number">4</span> Key</a>
+  <li><a href="#heap" id="toc-heap" class="nav-link" data-scroll-target="#heap"><span class="header-section-number">3</span> Heap</a></li>
+  <li><a href="#write-code" id="toc-write-code" class="nav-link" data-scroll-target="#write-code"><span class="header-section-number">4</span> Write code</a></li>
+  <li><a href="#key" id="toc-key" class="nav-link" data-scroll-target="#key"><span class="header-section-number">5</span> Key</a>
   <ul class="collapse">
-  <li><a href="#data-structures-1" id="toc-data-structures-1" class="nav-link" data-scroll-target="#data-structures-1"><span class="header-section-number">4.1</span> Data Structures</a></li>
-  <li><a href="#read-code-1" id="toc-read-code-1" class="nav-link" data-scroll-target="#read-code-1"><span class="header-section-number">4.2</span> Read Code</a></li>
-  <li><a href="#write-code-1" id="toc-write-code-1" class="nav-link" data-scroll-target="#write-code-1"><span class="header-section-number">4.3</span> Write code</a></li>
+  <li><a href="#data-structures-1" id="toc-data-structures-1" class="nav-link" data-scroll-target="#data-structures-1"><span class="header-section-number">5.1</span> Data Structures</a></li>
+  <li><a href="#read-code-1" id="toc-read-code-1" class="nav-link" data-scroll-target="#read-code-1"><span class="header-section-number">5.2</span> Read Code</a></li>
+  <li><a href="#heap-1" id="toc-heap-1" class="nav-link" data-scroll-target="#heap-1"><span class="header-section-number">5.3</span> Heap</a></li>
+  <li><a href="#write-code-1" id="toc-write-code-1" class="nav-link" data-scroll-target="#write-code-1"><span class="header-section-number">5.4</span> Write code</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -3331,8 +3333,18 @@ vertical-align: -.125em;
   │ 9    │ addFirst(99)  │                               │
   └──────┴───────────────┴───────────────────────────────┘</code></pre>
 </section>
-<section id="write-code" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Write code</h1>
+<section id="heap" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Heap</h1>
+<p>For the questions below, you are to draw the max-heap tree and the corresponding array.</p>
+<ol type="a">
+<li><p>Draw a max-heap (tree and array) which has the following values inserted in the following order: 32, 15, 6, 25, 21, 31, 7, 18, 35</p></li>
+<li><p>What would the max-heap from part (a) look like after <code>pop()</code>?</p></li>
+<li><p>What would the max-heap from part (b) look like after <code>pop()</code>?</p></li>
+<li><p>What would the max-heap from part (c) look like after value 29 is inserted?</p></li>
+</ol>
+</section>
+<section id="write-code" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Write code</h1>
 <p>You are given a <code>MinHeap</code> class that implements the following interface to store integers. You do not need to implement this class — assume it is fully working and available to you.</p>
 <pre><code>public interface Heap {  
    void insert(int val)   // inserts val into the heap 
@@ -3357,10 +3369,10 @@ int[] output = kSmallest(int[] arr, int k)
 
 Assert.assertEquals(expected, output);</code></pre>
 </section>
-<section id="key" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Key</h1>
-<section id="data-structures-1" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="data-structures-1"><span class="header-section-number">4.1</span> Data Structures</h2>
+<section id="key" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Key</h1>
+<section id="data-structures-1" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="data-structures-1"><span class="header-section-number">5.1</span> Data Structures</h2>
 <ol type="1">
 <li>F</li>
 <li>E</li>
@@ -3386,8 +3398,8 @@ Assert.assertEquals(expected, output);</code></pre>
 <li>D</li>
 </ol>
 </section>
-<section id="read-code-1" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="read-code-1"><span class="header-section-number">4.2</span> Read Code</h2>
+<section id="read-code-1" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="read-code-1"><span class="header-section-number">5.2</span> Read Code</h2>
 <pre><code>  ┌──────┬───────────────┬─────────────────────┐
   │ Line │   Operation   │    List contents    │
   ├──────┼───────────────┼─────────────────────┤
@@ -3410,8 +3422,442 @@ Assert.assertEquals(expected, output);</code></pre>
   │ 9    │ addFirst(99)  │ [99, 30, 10, 15]    │
   └──────┴───────────────┴─────────────────────┘</code></pre>
 </section>
-<section id="write-code-1" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="write-code-1"><span class="header-section-number">4.3</span> Write code</h2>
+<section id="heap-1" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="heap-1"><span class="header-section-number">5.3</span> Heap</h2>
+<p>For the questions below, you are to draw the heap tree and the corresponding array.</p>
+<ol type="a">
+<li>Draw a max-heap (tree and array) which has the following values inserted in the following order: 32, 15, 6, 25, 21, 31, 7, 18, 35</li>
+</ol>
+<p>         Array: <code>[35, 32, 31, 25, 21, 6, 7, 15, 18]</code></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 314.00 260.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
+<title>BST</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-256 310,-256 310,4 -4,4"></polygon>
+<!-- 35 -->
+<g id="node1" class="node">
+<title>35</title>
+<ellipse fill="none" stroke="black" cx="171" cy="-234" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="171" y="-229.8" font-family="Times,serif" font-size="14.00">35</text>
+</g>
+<!-- 32 -->
+<g id="node2" class="node">
+<title>32</title>
+<ellipse fill="none" stroke="black" cx="135" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="135" y="-157.8" font-family="Times,serif" font-size="14.00">32</text>
+</g>
+<!-- 35&#45;&#45;32 -->
+<g id="edge1" class="edge">
+<title>35--32</title>
+<path fill="none" stroke="black" d="M162.65,-216.76C156.83,-205.46 149.11,-190.44 143.3,-179.15" />
+</g>
+<!-- 31 -->
+<g id="node3" class="node">
+<title>31</title>
+<ellipse fill="none" stroke="black" cx="207" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="207" y="-157.8" font-family="Times,serif" font-size="14.00">31</text>
+</g>
+<!-- 35&#45;&#45;31 -->
+<g id="edge2" class="edge">
+<title>35--31</title>
+<path fill="none" stroke="black" d="M179.35,-216.76C185.17,-205.46 192.89,-190.44 198.7,-179.15" />
+</g>
+<!-- 25 -->
+<g id="node4" class="node">
+<title>25</title>
+<ellipse fill="none" stroke="black" cx="63" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="63" y="-85.8" font-family="Times,serif" font-size="14.00">25</text>
+</g>
+<!-- 32&#45;&#45;25 -->
+<g id="edge3" class="edge">
+<title>32--25</title>
+<path fill="none" stroke="black" d="M120.43,-146.83C108.02,-134.77 90.27,-117.51 77.8,-105.38" />
+</g>
+<!-- 21 -->
+<g id="node5" class="node">
+<title>21</title>
+<ellipse fill="none" stroke="black" cx="135" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="135" y="-85.8" font-family="Times,serif" font-size="14.00">21</text>
+</g>
+<!-- 32&#45;&#45;21 -->
+<g id="edge4" class="edge">
+<title>32--21</title>
+<path fill="none" stroke="black" d="M135,-143.7C135,-132.85 135,-118.92 135,-108.1" />
+</g>
+<!-- 6 -->
+<g id="node6" class="node">
+<title>6</title>
+<ellipse fill="none" stroke="black" cx="207" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="207" y="-85.8" font-family="Times,serif" font-size="14.00">6</text>
+</g>
+<!-- 31&#45;&#45;6 -->
+<g id="edge5" class="edge">
+<title>31--6</title>
+<path fill="none" stroke="black" d="M207,-143.7C207,-132.85 207,-118.92 207,-108.1" />
+</g>
+<!-- 7 -->
+<g id="node7" class="node">
+<title>7</title>
+<ellipse fill="none" stroke="black" cx="279" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="279" y="-85.8" font-family="Times,serif" font-size="14.00">7</text>
+</g>
+<!-- 31&#45;&#45;7 -->
+<g id="edge6" class="edge">
+<title>31--7</title>
+<path fill="none" stroke="black" d="M221.57,-146.83C233.98,-134.77 251.73,-117.51 264.2,-105.38" />
+</g>
+<!-- 15 -->
+<g id="node8" class="node">
+<title>15</title>
+<ellipse fill="none" stroke="black" cx="27" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="27" y="-13.8" font-family="Times,serif" font-size="14.00">15</text>
+</g>
+<!-- 25&#45;&#45;15 -->
+<g id="edge7" class="edge">
+<title>25--15</title>
+<path fill="none" stroke="black" d="M54.65,-72.76C48.83,-61.46 41.11,-46.44 35.3,-35.15" />
+</g>
+<!-- 18 -->
+<g id="node9" class="node">
+<title>18</title>
+<ellipse fill="none" stroke="black" cx="99" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="99" y="-13.8" font-family="Times,serif" font-size="14.00">18</text>
+</g>
+<!-- 25&#45;&#45;18 -->
+<g id="edge8" class="edge">
+<title>25--18</title>
+<path fill="none" stroke="black" d="M71.35,-72.76C77.17,-61.46 84.89,-46.44 90.7,-35.15" />
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ol start="2" type="a">
+<li>What would the max-heap from part (a) look like after <code>pop()</code>?</li>
+</ol>
+<p>         Array: <code>[32, 25, 31, 18, 21, 6, 7, 15]</code></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 316.00 260.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
+<title>BST</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-256 312,-256 312,4 -4,4"></polygon>
+<!-- 32 -->
+<g id="node1" class="node">
+<title>32</title>
+<ellipse fill="none" stroke="black" cx="173" cy="-234" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="173" y="-229.8" font-family="Times,serif" font-size="14.00">32</text>
+</g>
+<!-- 25 -->
+<g id="node2" class="node">
+<title>25</title>
+<ellipse fill="none" stroke="black" cx="137" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="137" y="-157.8" font-family="Times,serif" font-size="14.00">25</text>
+</g>
+<!-- 32&#45;&#45;25 -->
+<g id="edge1" class="edge">
+<title>32--25</title>
+<path fill="none" stroke="black" d="M164.65,-216.76C158.83,-205.46 151.11,-190.44 145.3,-179.15" />
+</g>
+<!-- 31 -->
+<g id="node3" class="node">
+<title>31</title>
+<ellipse fill="none" stroke="black" cx="209" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="209" y="-157.8" font-family="Times,serif" font-size="14.00">31</text>
+</g>
+<!-- 32&#45;&#45;31 -->
+<g id="edge2" class="edge">
+<title>32--31</title>
+<path fill="none" stroke="black" d="M181.35,-216.76C187.17,-205.46 194.89,-190.44 200.7,-179.15" />
+</g>
+<!-- 18 -->
+<g id="node4" class="node">
+<title>18</title>
+<ellipse fill="none" stroke="black" cx="65" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="65" y="-85.8" font-family="Times,serif" font-size="14.00">18</text>
+</g>
+<!-- 25&#45;&#45;18 -->
+<g id="edge3" class="edge">
+<title>25--18</title>
+<path fill="none" stroke="black" d="M122.43,-146.83C110.02,-134.77 92.27,-117.51 79.8,-105.38" />
+</g>
+<!-- 21 -->
+<g id="node5" class="node">
+<title>21</title>
+<ellipse fill="none" stroke="black" cx="137" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="137" y="-85.8" font-family="Times,serif" font-size="14.00">21</text>
+</g>
+<!-- 25&#45;&#45;21 -->
+<g id="edge4" class="edge">
+<title>25--21</title>
+<path fill="none" stroke="black" d="M137,-143.7C137,-132.85 137,-118.92 137,-108.1" />
+</g>
+<!-- 6 -->
+<g id="node6" class="node">
+<title>6</title>
+<ellipse fill="none" stroke="black" cx="209" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="209" y="-85.8" font-family="Times,serif" font-size="14.00">6</text>
+</g>
+<!-- 31&#45;&#45;6 -->
+<g id="edge5" class="edge">
+<title>31--6</title>
+<path fill="none" stroke="black" d="M209,-143.7C209,-132.85 209,-118.92 209,-108.1" />
+</g>
+<!-- 7 -->
+<g id="node7" class="node">
+<title>7</title>
+<ellipse fill="none" stroke="black" cx="281" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="281" y="-85.8" font-family="Times,serif" font-size="14.00">7</text>
+</g>
+<!-- 31&#45;&#45;7 -->
+<g id="edge6" class="edge">
+<title>31--7</title>
+<path fill="none" stroke="black" d="M223.57,-146.83C235.98,-134.77 253.73,-117.51 266.2,-105.38" />
+</g>
+<!-- 15 -->
+<g id="node8" class="node">
+<title>15</title>
+<ellipse fill="none" stroke="black" cx="27" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="27" y="-13.8" font-family="Times,serif" font-size="14.00">15</text>
+</g>
+<!-- 18&#45;&#45;15 -->
+<g id="edge7" class="edge">
+<title>18--15</title>
+<path fill="none" stroke="black" d="M56.19,-72.76C50.05,-61.46 41.89,-46.44 35.77,-35.15" />
+</g>
+<!-- null1 -->
+<g id="node9" class="node">
+<title>null1</title>
+</g>
+<!-- 18&#45;&#45;null1 -->
+<g id="edge8" class="edge">
+<title>18--null1</title>
+<path fill="none" stroke="black" d="M73.81,-72.76C79.86,-61.62 87.87,-46.87 93.97,-35.63" />
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ol start="3" type="a">
+<li>What would the max-heap from part (b) look like after <code>pop()</code>?</li>
+</ol>
+<p>         Array: <code>[31, 25, 15, 18, 21, 6, 7]</code></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 278.00 188.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
+<title>BST</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-184 274,-184 274,4 -4,4"></polygon>
+<!-- 31 -->
+<g id="node1" class="node">
+<title>31</title>
+<ellipse fill="none" stroke="black" cx="135" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="135" y="-157.8" font-family="Times,serif" font-size="14.00">31</text>
+</g>
+<!-- 25 -->
+<g id="node2" class="node">
+<title>25</title>
+<ellipse fill="none" stroke="black" cx="99" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="99" y="-85.8" font-family="Times,serif" font-size="14.00">25</text>
+</g>
+<!-- 31&#45;&#45;25 -->
+<g id="edge1" class="edge">
+<title>31--25</title>
+<path fill="none" stroke="black" d="M126.65,-144.76C120.83,-133.46 113.11,-118.44 107.3,-107.15" />
+</g>
+<!-- 15 -->
+<g id="node3" class="node">
+<title>15</title>
+<ellipse fill="none" stroke="black" cx="171" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="171" y="-85.8" font-family="Times,serif" font-size="14.00">15</text>
+</g>
+<!-- 31&#45;&#45;15 -->
+<g id="edge2" class="edge">
+<title>31--15</title>
+<path fill="none" stroke="black" d="M143.35,-144.76C149.17,-133.46 156.89,-118.44 162.7,-107.15" />
+</g>
+<!-- 18 -->
+<g id="node4" class="node">
+<title>18</title>
+<ellipse fill="none" stroke="black" cx="27" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="27" y="-13.8" font-family="Times,serif" font-size="14.00">18</text>
+</g>
+<!-- 25&#45;&#45;18 -->
+<g id="edge3" class="edge">
+<title>25--18</title>
+<path fill="none" stroke="black" d="M84.43,-74.83C72.02,-62.77 54.27,-45.51 41.8,-33.38" />
+</g>
+<!-- 21 -->
+<g id="node5" class="node">
+<title>21</title>
+<ellipse fill="none" stroke="black" cx="99" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="99" y="-13.8" font-family="Times,serif" font-size="14.00">21</text>
+</g>
+<!-- 25&#45;&#45;21 -->
+<g id="edge4" class="edge">
+<title>25--21</title>
+<path fill="none" stroke="black" d="M99,-71.7C99,-60.85 99,-46.92 99,-36.1" />
+</g>
+<!-- 6 -->
+<g id="node6" class="node">
+<title>6</title>
+<ellipse fill="none" stroke="black" cx="171" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="171" y="-13.8" font-family="Times,serif" font-size="14.00">6</text>
+</g>
+<!-- 15&#45;&#45;6 -->
+<g id="edge5" class="edge">
+<title>15--6</title>
+<path fill="none" stroke="black" d="M171,-71.7C171,-60.85 171,-46.92 171,-36.1" />
+</g>
+<!-- 7 -->
+<g id="node7" class="node">
+<title>7</title>
+<ellipse fill="none" stroke="black" cx="243" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="243" y="-13.8" font-family="Times,serif" font-size="14.00">7</text>
+</g>
+<!-- 15&#45;&#45;7 -->
+<g id="edge6" class="edge">
+<title>15--7</title>
+<path fill="none" stroke="black" d="M185.57,-74.83C197.98,-62.77 215.73,-45.51 228.2,-33.38" />
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ol start="4" type="a">
+<li>What would the max-heap from part (c) look like after value 29 is inserted?</li>
+</ol>
+<p>         Array: <code>[31, 29, 15, 25, 21, 6, 7, 18]</code></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 316.00 260.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
+<title>BST</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-256 312,-256 312,4 -4,4"></polygon>
+<!-- 31 -->
+<g id="node1" class="node">
+<title>31</title>
+<ellipse fill="none" stroke="black" cx="173" cy="-234" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="173" y="-229.8" font-family="Times,serif" font-size="14.00">31</text>
+</g>
+<!-- 29 -->
+<g id="node2" class="node">
+<title>29</title>
+<ellipse fill="none" stroke="black" cx="137" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="137" y="-157.8" font-family="Times,serif" font-size="14.00">29</text>
+</g>
+<!-- 31&#45;&#45;29 -->
+<g id="edge1" class="edge">
+<title>31--29</title>
+<path fill="none" stroke="black" d="M164.65,-216.76C158.83,-205.46 151.11,-190.44 145.3,-179.15" />
+</g>
+<!-- 15 -->
+<g id="node3" class="node">
+<title>15</title>
+<ellipse fill="none" stroke="black" cx="209" cy="-162" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="209" y="-157.8" font-family="Times,serif" font-size="14.00">15</text>
+</g>
+<!-- 31&#45;&#45;15 -->
+<g id="edge2" class="edge">
+<title>31--15</title>
+<path fill="none" stroke="black" d="M181.35,-216.76C187.17,-205.46 194.89,-190.44 200.7,-179.15" />
+</g>
+<!-- 25 -->
+<g id="node4" class="node">
+<title>25</title>
+<ellipse fill="none" stroke="black" cx="65" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="65" y="-85.8" font-family="Times,serif" font-size="14.00">25</text>
+</g>
+<!-- 29&#45;&#45;25 -->
+<g id="edge3" class="edge">
+<title>29--25</title>
+<path fill="none" stroke="black" d="M122.43,-146.83C110.02,-134.77 92.27,-117.51 79.8,-105.38" />
+</g>
+<!-- 21 -->
+<g id="node5" class="node">
+<title>21</title>
+<ellipse fill="none" stroke="black" cx="137" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="137" y="-85.8" font-family="Times,serif" font-size="14.00">21</text>
+</g>
+<!-- 29&#45;&#45;21 -->
+<g id="edge4" class="edge">
+<title>29--21</title>
+<path fill="none" stroke="black" d="M137,-143.7C137,-132.85 137,-118.92 137,-108.1" />
+</g>
+<!-- 6 -->
+<g id="node6" class="node">
+<title>6</title>
+<ellipse fill="none" stroke="black" cx="209" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="209" y="-85.8" font-family="Times,serif" font-size="14.00">6</text>
+</g>
+<!-- 15&#45;&#45;6 -->
+<g id="edge5" class="edge">
+<title>15--6</title>
+<path fill="none" stroke="black" d="M209,-143.7C209,-132.85 209,-118.92 209,-108.1" />
+</g>
+<!-- 7 -->
+<g id="node7" class="node">
+<title>7</title>
+<ellipse fill="none" stroke="black" cx="281" cy="-90" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="281" y="-85.8" font-family="Times,serif" font-size="14.00">7</text>
+</g>
+<!-- 15&#45;&#45;7 -->
+<g id="edge6" class="edge">
+<title>15--7</title>
+<path fill="none" stroke="black" d="M223.57,-146.83C235.98,-134.77 253.73,-117.51 266.2,-105.38" />
+</g>
+<!-- 18 -->
+<g id="node8" class="node">
+<title>18</title>
+<ellipse fill="none" stroke="black" cx="27" cy="-18" rx="27" ry="18"></ellipse>
+<text text-anchor="middle" x="27" y="-13.8" font-family="Times,serif" font-size="14.00">18</text>
+</g>
+<!-- 25&#45;&#45;18 -->
+<g id="edge7" class="edge">
+<title>25--18</title>
+<path fill="none" stroke="black" d="M56.19,-72.76C50.05,-61.46 41.89,-46.44 35.77,-35.15" />
+</g>
+<!-- null1 -->
+<g id="node9" class="node">
+<title>null1</title>
+</g>
+<!-- 25&#45;&#45;null1 -->
+<g id="edge8" class="edge">
+<title>25--null1</title>
+<path fill="none" stroke="black" d="M73.81,-72.76C79.86,-61.62 87.87,-46.87 93.97,-35.63" />
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="write-code-1" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="write-code-1"><span class="header-section-number">5.4</span> Write code</h2>
 <pre class="{java}"><code>public static int[] kSmallest(int[] arr, int k) {
   MinHeap heap = new MinHeap();
   for (int val : arr) heap.insert(val);
