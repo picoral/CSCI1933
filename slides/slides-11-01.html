@@ -1275,6 +1275,61 @@ Patient severity: 1, arrival time: 09:41:30.597723</code></pre>
 <li>Instead of popping the max, we will move the root (max) to the last position in the array and make our max-heap one element shorter (we will do in-place sorting)</li>
 </ol>
 </section>
+<section id="solution" class="slide level2">
+<h2>Solution</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href></a>public class HeapSort {</span>
+<span id="cb5-2"><a href></a></span>
+<span id="cb5-3"><a href></a>    private static void swap(int[] arr, int indexOne, int indexTwo) {</span>
+<span id="cb5-4"><a href></a>        int temp = arr[indexOne];</span>
+<span id="cb5-5"><a href></a>        arr[indexOne] = arr[indexTwo];</span>
+<span id="cb5-6"><a href></a>        arr[indexTwo] = temp;</span>
+<span id="cb5-7"><a href></a>    }</span>
+<span id="cb5-8"><a href></a></span>
+<span id="cb5-9"><a href></a>    public static void sort(int[] arr) {</span>
+<span id="cb5-10"><a href></a>        int n = arr.length;</span>
+<span id="cb5-11"><a href></a></span>
+<span id="cb5-12"><a href></a>        // build max heap -- start from the last non-leaf node (n/2 - 1)</span>
+<span id="cb5-13"><a href></a>        for (int i = n / 2 - 1; i &gt;= 0; i--)</span>
+<span id="cb5-14"><a href></a>            bubbleDown(arr, n, i);</span>
+<span id="cb5-15"><a href></a></span>
+<span id="cb5-16"><a href></a>        // extract elements from heap one by one</span>
+<span id="cb5-17"><a href></a>        for (int i = n - 1; i &gt; 0; i--) { // backwards to ignore the end of the array</span>
+<span id="cb5-18"><a href></a>            // move current root (max) to end</span>
+<span id="cb5-19"><a href></a>            swap(arr,0, i);</span>
+<span id="cb5-20"><a href></a></span>
+<span id="cb5-21"><a href></a>            // heapify the reduced heap</span>
+<span id="cb5-22"><a href></a>            bubbleDown(arr, i, 0);</span>
+<span id="cb5-23"><a href></a>        }</span>
+<span id="cb5-24"><a href></a>    }</span>
+<span id="cb5-25"><a href></a></span>
+<span id="cb5-26"><a href></a>    // recursive, heapify subtree rooted at index i, heap size n</span>
+<span id="cb5-27"><a href></a>    private static void bubbleDown(int[] arr, int n, int i) {</span>
+<span id="cb5-28"><a href></a>        int largest = i;</span>
+<span id="cb5-29"><a href></a>        int left  = 2 * i + 1; // get left child index</span>
+<span id="cb5-30"><a href></a>        int right = 2 * i + 2; // get right child index</span>
+<span id="cb5-31"><a href></a></span>
+<span id="cb5-32"><a href></a>        // if there&#39;s a left child, and left child is larger, make largest the left</span>
+<span id="cb5-33"><a href></a>        if (left &lt; n &amp;&amp; arr[left] &gt; arr[largest])</span>
+<span id="cb5-34"><a href></a>            largest = left;</span>
+<span id="cb5-35"><a href></a></span>
+<span id="cb5-36"><a href></a>        // if there&#39;s a right child, and the right child is larger, make largest the right</span>
+<span id="cb5-37"><a href></a>        if (right &lt; n &amp;&amp; arr[right] &gt; arr[largest])</span>
+<span id="cb5-38"><a href></a>            largest = right;</span>
+<span id="cb5-39"><a href></a></span>
+<span id="cb5-40"><a href></a>        // if parent is not the largest</span>
+<span id="cb5-41"><a href></a>        if (largest != i) {</span>
+<span id="cb5-42"><a href></a>            swap(arr, i, largest);</span>
+<span id="cb5-43"><a href></a>            bubbleDown(arr, n, largest);</span>
+<span id="cb5-44"><a href></a>        }</span>
+<span id="cb5-45"><a href></a>    }</span>
+<span id="cb5-46"><a href></a></span>
+<span id="cb5-47"><a href></a>    public static void main(String[] args) {</span>
+<span id="cb5-48"><a href></a>        int[] arr = {12, 11, 13, 5, 6, 7, 0, 30, 2, 67};</span>
+<span id="cb5-49"><a href></a>        sort(arr);</span>
+<span id="cb5-50"><a href></a>        System.out.println(java.util.Arrays.toString(arr));</span>
+<span id="cb5-51"><a href></a>    }</span>
+<span id="cb5-52"><a href></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="advantages-of-heap-sort" class="slide level2">
 <h2>Advantages of Heap Sort</h2>
 <ul>
