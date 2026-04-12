@@ -1219,12 +1219,21 @@ margin-right: 0; }
 </div>
 
 </section>
+<section id="hash-intro" class="slide level2">
+<h2>Hash – Intro</h2>
+<ul>
+<li>Map – maps a key to a value</li>
+<li>Key – unique, so that when retrieving a value with a key we get the same value</li>
+<li>Key Transformation – hash function</li>
+<li>Hash function – maps N unique keys onto 0..M-1 (index)</li>
+</ul>
+</section>
 <section id="hash-definition" class="slide level2">
 <h2>Hash – definition</h2>
 <ul>
 <li>to “hash” something is to summarize it</li>
 <li>a <em>hash function</em> calculates a key (which indicates where the value is)</li>
-<li>it alwasy calculates the same key for the same value</li>
+<li>it always calculates the same key for the same value</li>
 <li>O(1) average-case performance</li>
 </ul>
 </section>
@@ -1261,18 +1270,6 @@ margin-right: 0; }
 <p>Write a function to compute a hash code for lowercase alphabetic English caracters (a-z). The function returns integers from 0 to 25, with each char getting a different int. The function returns a wild card for not lowercase alphabetic English chars.</p>
 </blockquote>
 </section>
-<section id="implementation" class="slide level2">
-<h2>Implementation</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>public int getHash(char c) {</span>
-<span id="cb1-2"><a href="#cb1-2"></a>  c = Character.toLowerCase(c);</span>
-<span id="cb1-3"><a href="#cb1-3"></a>  int hash = (int) c - 97;</span>
-<span id="cb1-4"><a href="#cb1-4"></a>  if (hash &lt; 0 || hash &gt; 25) return -1;</span>
-<span id="cb1-5"><a href="#cb1-5"></a>  return hash;</span>
-<span id="cb1-6"><a href="#cb1-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>What do you get when you run this?</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>Character a = &#39;a&#39;;</span>
-<span id="cb2-2"><a href="#cb2-2"></a>System.out.print(a.hashCode());</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
 <section id="minimal-perfect-hash-function" class="slide level2">
 <h2>Minimal Perfect Hash function</h2>
 <ul>
@@ -1293,7 +1290,7 @@ margin-right: 0; }
 <section id="minimal-perfect-hash-function-2" class="slide level2">
 <h2>Minimal Perfect Hash function</h2>
 <blockquote>
-<p>Write a function to compute a hash code for lowercase alphabetic English caracters (a-z). The function returns integers from 0 to 25, with each char getting a different int. The function returns a wild card for not lowercase alphabetic English chars.</p>
+<p>Write a function to compute a hash code for lowercase alphabetic English caracters (a-z). The function returns integers from 0 to 25, with each char getting a different <strong>int</strong>. The function returns a wild card for not lowercase alphabetic English chars.</p>
 </blockquote>
 </section>
 <section id="general-algorithm" class="slide level2">
@@ -1301,48 +1298,93 @@ margin-right: 0; }
 <p>Minimal Perfect Hash function <span class="math inline">\(h(key)\)</span></p>
 <ul>
 <li>Data: store an array (of appropriate length) named <code>values</code></li>
-<li><code>put(key, value)</code> – values[<span class="math inline">\(h(key)\)</span>] = value</li>
-<li><code>contains(key)</code> – return values[<span class="math inline">\(h(key)\)</span>] != null</li>
-<li><code>get(key)</code> – return values[<span class="math inline">\(h(key)\)</span>]</li>
-<li><code>remove(key)</code> – values[<span class="math inline">\(h(key)\)</span>] = null</li>
+<li><code>void put(key, value)</code> – values[<span class="math inline">\(h(key)\)</span>] = value</li>
+<li><code>boolean contains(key)</code> – return values[<span class="math inline">\(h(key)\)</span>] != null</li>
+<li><code>int get(key)</code> – return values[<span class="math inline">\(h(key)\)</span>]</li>
+<li><code>void remove(key)</code> – values[<span class="math inline">\(h(key)\)</span>] = null</li>
 </ul>
 </section>
-<section id="implementation-1" class="slide level2">
+<section id="hash-generic-interface" class="slide level2">
+<h2>Hash Generic Interface</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>public interface Hash&lt;K, V&gt; {</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    void put(K key, V value);</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    boolean contains(K key);</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    V get(K key);</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    void remove(K key);</span>
+<span id="cb1-6"><a href="#cb1-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="charhash" class="slide level2">
+<h2>CharHash</h2>
+<p>Here’s the skeleton code for CharHash:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>public class CharHash implements Hash&lt;Character, Integer&gt;{</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    public void put(Character key, Integer value) {}</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    public boolean contains(Character key) {return false;}</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    public Integer get(Character key) {return 0;}</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    public void remove(Character key){}</span>
+<span id="cb2-6"><a href="#cb2-6"></a>} </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>What instance variables and helper methods do we need?</p>
+<ul>
+<li>Our hash table is an array of integers, size of 25</li>
+<li>Method to get an index from a character</li>
+</ul>
+</section>
+<section id="the-hash-function-1" class="slide level2">
+<h2>The hash function</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>public int getIndex(char c) {</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  c = Character.toLowerCase(c);</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  int hash = (int) c - 97;</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  if (hash &lt; 0 || hash &gt; 25) return -1;</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  return hash;</span>
+<span id="cb3-6"><a href="#cb3-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="gradescope-submission" class="slide level2">
+<h2>Gradescope Submission</h2>
+<p>Test your code and submit <code>Hash.java</code> and <code>CharHash.java</code> to <a href="https://www.gradescope.com/courses/1234179/assignments/7975544/">gradescope</a>.</p>
+</section>
+<section id="implementation" class="slide level2">
 <h2>Implementation</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>public class CharHash&lt;T&gt; {</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    private T[] table = (T[]) new Object[26];</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a>    private int getHash(char c) {</span>
-<span id="cb3-5"><a href="#cb3-5"></a>        c = Character.toLowerCase(c);</span>
-<span id="cb3-6"><a href="#cb3-6"></a>        int hash = (int) c - 97;</span>
-<span id="cb3-7"><a href="#cb3-7"></a>        if (hash &lt; 0 || hash &gt; 25) return -1;</span>
-<span id="cb3-8"><a href="#cb3-8"></a>        return hash;</span>
-<span id="cb3-9"><a href="#cb3-9"></a>    }</span>
-<span id="cb3-10"><a href="#cb3-10"></a></span>
-<span id="cb3-11"><a href="#cb3-11"></a>    public void put(char key, T value) {</span>
-<span id="cb3-12"><a href="#cb3-12"></a>       int index = getHash(key);</span>
-<span id="cb3-13"><a href="#cb3-13"></a>       if (index &gt;= 0) table[index] = value;</span>
-<span id="cb3-14"><a href="#cb3-14"></a></span>
-<span id="cb3-15"><a href="#cb3-15"></a>    }</span>
-<span id="cb3-16"><a href="#cb3-16"></a></span>
-<span id="cb3-17"><a href="#cb3-17"></a>    public boolean contains(char key) {</span>
-<span id="cb3-18"><a href="#cb3-18"></a>        int index = getHash(key);</span>
-<span id="cb3-19"><a href="#cb3-19"></a>        if (index &gt;= 0) return table[index] != null;</span>
-<span id="cb3-20"><a href="#cb3-20"></a>        return false;</span>
-<span id="cb3-21"><a href="#cb3-21"></a>    }</span>
-<span id="cb3-22"><a href="#cb3-22"></a></span>
-<span id="cb3-23"><a href="#cb3-23"></a>    public T get(char key) {</span>
-<span id="cb3-24"><a href="#cb3-24"></a>        int index = getHash(key);</span>
-<span id="cb3-25"><a href="#cb3-25"></a>        if (index &gt;= 0) return table[index];</span>
-<span id="cb3-26"><a href="#cb3-26"></a>        return null;</span>
-<span id="cb3-27"><a href="#cb3-27"></a>    }</span>
-<span id="cb3-28"><a href="#cb3-28"></a></span>
-<span id="cb3-29"><a href="#cb3-29"></a>    public void remove(char key) {</span>
-<span id="cb3-30"><a href="#cb3-30"></a>        int index = getHash(key);</span>
-<span id="cb3-31"><a href="#cb3-31"></a>        if (index &gt;= 0) table[index] = null;</span>
-<span id="cb3-32"><a href="#cb3-32"></a>    }</span>
-<span id="cb3-33"><a href="#cb3-33"></a></span>
-<span id="cb3-34"><a href="#cb3-34"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>public class CharHash implements Hash&lt;Character, Integer&gt;{</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    private Integer[] table = new Integer[26]; // initial values are null</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    private int getIndex(char c) {</span>
+<span id="cb4-5"><a href="#cb4-5"></a>        c = Character.toLowerCase(c);</span>
+<span id="cb4-6"><a href="#cb4-6"></a>        int hash = (int) c - 97;</span>
+<span id="cb4-7"><a href="#cb4-7"></a>        if (hash &lt; 0 || hash &gt; 25) return -1;</span>
+<span id="cb4-8"><a href="#cb4-8"></a>        return hash;</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    }</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a>    public void put(Character key, Integer value) {</span>
+<span id="cb4-12"><a href="#cb4-12"></a>        int index = getIndex(key);</span>
+<span id="cb4-13"><a href="#cb4-13"></a>        if (index &gt;= 0) table[index] = value;</span>
+<span id="cb4-14"><a href="#cb4-14"></a>    }</span>
+<span id="cb4-15"><a href="#cb4-15"></a></span>
+<span id="cb4-16"><a href="#cb4-16"></a>    public boolean contains(Character key) {</span>
+<span id="cb4-17"><a href="#cb4-17"></a>        int index = getIndex(key);</span>
+<span id="cb4-18"><a href="#cb4-18"></a>        if (index &gt;= 0) return table[index] != null;</span>
+<span id="cb4-19"><a href="#cb4-19"></a>        return false;</span>
+<span id="cb4-20"><a href="#cb4-20"></a>    }</span>
+<span id="cb4-21"><a href="#cb4-21"></a></span>
+<span id="cb4-22"><a href="#cb4-22"></a>    public Integer get(Character key) {</span>
+<span id="cb4-23"><a href="#cb4-23"></a>        int index = getIndex(key);</span>
+<span id="cb4-24"><a href="#cb4-24"></a>        if (index &gt;= 0) return table[index];</span>
+<span id="cb4-25"><a href="#cb4-25"></a>        return null;</span>
+<span id="cb4-26"><a href="#cb4-26"></a>    }</span>
+<span id="cb4-27"><a href="#cb4-27"></a></span>
+<span id="cb4-28"><a href="#cb4-28"></a>    public void remove(Character key){</span>
+<span id="cb4-29"><a href="#cb4-29"></a>        int index = getIndex(key);</span>
+<span id="cb4-30"><a href="#cb4-30"></a>        if (index &gt;= 0) table[index] = null;</span>
+<span id="cb4-31"><a href="#cb4-31"></a>    }</span>
+<span id="cb4-32"><a href="#cb4-32"></a></span>
+<span id="cb4-33"><a href="#cb4-33"></a>    public String toString() {</span>
+<span id="cb4-34"><a href="#cb4-34"></a>        String out = &quot;&quot;;</span>
+<span id="cb4-35"><a href="#cb4-35"></a>        for (int i=0;i&lt;26;i++)</span>
+<span id="cb4-36"><a href="#cb4-36"></a>            if (table[i] != null) {</span>
+<span id="cb4-37"><a href="#cb4-37"></a>                char c = (char) (97+i);</span>
+<span id="cb4-38"><a href="#cb4-38"></a>                out += c + &quot; -- &quot; + table[i] + &quot;\n&quot;;</span>
+<span id="cb4-39"><a href="#cb4-39"></a>            }</span>
+<span id="cb4-40"><a href="#cb4-40"></a>        return out.trim();</span>
+<span id="cb4-41"><a href="#cb4-41"></a>    }</span>
+<span id="cb4-42"><a href="#cb4-42"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="minimal-perfect-hash-function-3" class="slide level2">
 <h2>Minimal Perfect Hash function</h2>
@@ -1360,15 +1402,6 @@ margin-right: 0; }
 <li>Example: As of Unicode version 18.0, there are 394,194 assigned characters</li>
 </ul></li>
 </ul>
-</section>
-<section id="student-rating-of-teaching" class="slide level2">
-<h2>Student Rating of Teaching</h2>
-<p>Go to canvas, on the menu on the left you will see a “Student Rating of Teaching” option.</p>
-<p>Please complete the survey: it’s anonymous, I don’t get the results until winter break, results are used for improving my teaching (and providing feedback to my boss)</p>
-</section>
-<section id="quiz-10" class="slide level2">
-<h2>Quiz 10</h2>
-<p>You have 10 minutes to complete the quiz</p>
 </section>
 <section id="hash-functions" class="slide level2">
 <h2>Hash functions</h2>
@@ -1404,17 +1437,17 @@ margin-right: 0; }
 <section id="simple-example-1" class="slide level2">
 <h2>Simple example</h2>
 <p>Here’s a hash function in java:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>public class Hash {</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    int tableSize;</span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a>    public Hash(int size) {</span>
-<span id="cb5-5"><a href="#cb5-5"></a>        tableSize = size;</span>
-<span id="cb5-6"><a href="#cb5-6"></a>    }</span>
-<span id="cb5-7"><a href="#cb5-7"></a></span>
-<span id="cb5-8"><a href="#cb5-8"></a>    public int getHash(int value) {</span>
-<span id="cb5-9"><a href="#cb5-9"></a>        return Math.abs(value % tableSize);</span>
-<span id="cb5-10"><a href="#cb5-10"></a>    }</span>
-<span id="cb5-11"><a href="#cb5-11"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>public class Hash {</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    int tableSize;</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>    public Hash(int size) {</span>
+<span id="cb6-5"><a href="#cb6-5"></a>        tableSize = size;</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    }</span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a>    public int getHash(int value) {</span>
+<span id="cb6-9"><a href="#cb6-9"></a>        return Math.abs(value % tableSize);</span>
+<span id="cb6-10"><a href="#cb6-10"></a>    }</span>
+<span id="cb6-11"><a href="#cb6-11"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>How many collisions would we get?</li>
 </ul>
@@ -1424,21 +1457,21 @@ margin-right: 0; }
 </section>
 <section id="simple-example-testing" class="slide level2">
 <h2>Simple example – testing</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>int[] values = new int[]{37, 7, 73, 77, 11, 68, 50, 66, 19, 4, 1, 18, 76, 71,</span>
-<span id="cb7-2"><a href="#cb7-2"></a>  31, 45, 12, 25, 49, 53, 69, 87, 41, 2, 43, 23, 62, 38, 47, 51, 55, 65, 58, </span>
-<span id="cb7-3"><a href="#cb7-3"></a>  91, 17, 63, 27, 88, 48};</span>
-<span id="cb7-4"><a href="#cb7-4"></a></span>
-<span id="cb7-5"><a href="#cb7-5"></a>int size = 20;</span>
-<span id="cb7-6"><a href="#cb7-6"></a>Hash hash = new Hash(size);</span>
-<span id="cb7-7"><a href="#cb7-7"></a></span>
-<span id="cb7-8"><a href="#cb7-8"></a>int[] indices = new int[size];</span>
-<span id="cb7-9"><a href="#cb7-9"></a>for (int v : values) {</span>
-<span id="cb7-10"><a href="#cb7-10"></a>  indices[hash.getHash(v)] += 1;</span>
-<span id="cb7-11"><a href="#cb7-11"></a>}</span>
-<span id="cb7-12"><a href="#cb7-12"></a></span>
-<span id="cb7-13"><a href="#cb7-13"></a>for (int i=0; i&lt;size; i++) {</span>
-<span id="cb7-14"><a href="#cb7-14"></a>  System.out.println(i + &quot; - &quot; + indices[i] );</span>
-<span id="cb7-15"><a href="#cb7-15"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>int[] values = new int[]{37, 7, 73, 77, 11, 68, 50, 66, 19, 4, 1, 18, 76, 71,</span>
+<span id="cb8-2"><a href="#cb8-2"></a>  31, 45, 12, 25, 49, 53, 69, 87, 41, 2, 43, 23, 62, 38, 47, 51, 55, 65, 58, </span>
+<span id="cb8-3"><a href="#cb8-3"></a>  91, 17, 63, 27, 88, 48};</span>
+<span id="cb8-4"><a href="#cb8-4"></a></span>
+<span id="cb8-5"><a href="#cb8-5"></a>int size = 20;</span>
+<span id="cb8-6"><a href="#cb8-6"></a>Hash hash = new Hash(size);</span>
+<span id="cb8-7"><a href="#cb8-7"></a></span>
+<span id="cb8-8"><a href="#cb8-8"></a>int[] indices = new int[size];</span>
+<span id="cb8-9"><a href="#cb8-9"></a>for (int v : values) {</span>
+<span id="cb8-10"><a href="#cb8-10"></a>  indices[hash.getHash(v)] += 1;</span>
+<span id="cb8-11"><a href="#cb8-11"></a>}</span>
+<span id="cb8-12"><a href="#cb8-12"></a></span>
+<span id="cb8-13"><a href="#cb8-13"></a>for (int i=0; i&lt;size; i++) {</span>
+<span id="cb8-14"><a href="#cb8-14"></a>  System.out.println(i + &quot; - &quot; + indices[i] );</span>
+<span id="cb8-15"><a href="#cb8-15"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="what-does-claude-say" class="slide level2">
 <h2>What does Claude say?</h2>
@@ -1455,11 +1488,14 @@ margin-right: 0; }
 </section>
 <section id="what-does-claude-say-1" class="slide level2">
 <h2>What does Claude say?</h2>
-<p>Works well for any table size:</p>
+<p>Claude claims this works well for any table size:</p>
 <ul>
 <li>h(k) = ⌊m × (k × A mod 1)⌋</li>
 <li>Using A ≈ 0.6180339887 (golden ratio constant) with m = 64</li>
 </ul>
+<blockquote>
+<p>Does this work well?</p>
+</blockquote>
 </section>
 <section id="exercise" class="slide level2">
 <h2>Exercise</h2>
@@ -2534,81 +2570,86 @@ font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
 </section>
 <section id="solution" class="slide level2">
 <h2>Solution</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>public class WordHash {</span>
-<span id="cb8-2"><a href="#cb8-2"></a>    private String[] table;</span>
-<span id="cb8-3"><a href="#cb8-3"></a>    private int tableSize = 70000;</span>
-<span id="cb8-4"><a href="#cb8-4"></a>    private int count;</span>
-<span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a>    public WordHash() {</span>
-<span id="cb8-7"><a href="#cb8-7"></a>        table = new String[tableSize];</span>
-<span id="cb8-8"><a href="#cb8-8"></a>        count = 0;</span>
-<span id="cb8-9"><a href="#cb8-9"></a>    }</span>
-<span id="cb8-10"><a href="#cb8-10"></a></span>
-<span id="cb8-11"><a href="#cb8-11"></a>    /**</span>
-<span id="cb8-12"><a href="#cb8-12"></a>     * Hash function</span>
-<span id="cb8-13"><a href="#cb8-13"></a>     * @param word is a string, a word in English</span>
-<span id="cb8-14"><a href="#cb8-14"></a>     * @return an index, which is an int between 0 and tableSize-1</span>
-<span id="cb8-15"><a href="#cb8-15"></a>     */</span>
-<span id="cb8-16"><a href="#cb8-16"></a>    private int getIndex(String word) {</span>
-<span id="cb8-17"><a href="#cb8-17"></a>        int total = 0;</span>
-<span id="cb8-18"><a href="#cb8-18"></a>        for (char c : word.toCharArray()) {</span>
-<span id="cb8-19"><a href="#cb8-19"></a>            total += (int) c;</span>
-<span id="cb8-20"><a href="#cb8-20"></a>        }</span>
-<span id="cb8-21"><a href="#cb8-21"></a>        return (total * 997) % tableSize;</span>
-<span id="cb8-22"><a href="#cb8-22"></a>    }</span>
-<span id="cb8-23"><a href="#cb8-23"></a></span>
-<span id="cb8-24"><a href="#cb8-24"></a>    public void put(String word) {</span>
-<span id="cb8-25"><a href="#cb8-25"></a>        int index = getIndex(word);</span>
-<span id="cb8-26"><a href="#cb8-26"></a>        while (table[index] != null) {</span>
-<span id="cb8-27"><a href="#cb8-27"></a>            index++;</span>
-<span id="cb8-28"><a href="#cb8-28"></a>            if (index == tableSize -1) index = 0;</span>
-<span id="cb8-29"><a href="#cb8-29"></a>        }</span>
-<span id="cb8-30"><a href="#cb8-30"></a>        table[index] = word;</span>
-<span id="cb8-31"><a href="#cb8-31"></a>        count++;</span>
-<span id="cb8-32"><a href="#cb8-32"></a>        if (load() &gt; 0.7) expandArray();</span>
-<span id="cb8-33"><a href="#cb8-33"></a>    }</span>
-<span id="cb8-34"><a href="#cb8-34"></a></span>
-<span id="cb8-35"><a href="#cb8-35"></a>    public boolean contains(String word) {</span>
-<span id="cb8-36"><a href="#cb8-36"></a>        int index = getIndex(word);</span>
-<span id="cb8-37"><a href="#cb8-37"></a>        while (table[index]!= null &amp;&amp; !table[index].equals(word)) {</span>
-<span id="cb8-38"><a href="#cb8-38"></a>            index++;</span>
-<span id="cb8-39"><a href="#cb8-39"></a>            if (index == tableSize-1) index = 0;</span>
-<span id="cb8-40"><a href="#cb8-40"></a>        }</span>
-<span id="cb8-41"><a href="#cb8-41"></a>        if (table[index] == null) return false;</span>
-<span id="cb8-42"><a href="#cb8-42"></a>        return true;</span>
-<span id="cb8-43"><a href="#cb8-43"></a>    }</span>
-<span id="cb8-44"><a href="#cb8-44"></a></span>
-<span id="cb8-45"><a href="#cb8-45"></a>    private int whereToPut(String word, String[] newTable) {</span>
-<span id="cb8-46"><a href="#cb8-46"></a>        int index = getIndex(word);</span>
-<span id="cb8-47"><a href="#cb8-47"></a>        while (newTable[index] != null) {</span>
-<span id="cb8-48"><a href="#cb8-48"></a>            index++;</span>
-<span id="cb8-49"><a href="#cb8-49"></a>            if (index == tableSize-1) index = 0;</span>
-<span id="cb8-50"><a href="#cb8-50"></a>        }</span>
-<span id="cb8-51"><a href="#cb8-51"></a>        return index;</span>
-<span id="cb8-52"><a href="#cb8-52"></a>    }</span>
-<span id="cb8-53"><a href="#cb8-53"></a></span>
-<span id="cb8-54"><a href="#cb8-54"></a>    private void expandArray() {</span>
-<span id="cb8-55"><a href="#cb8-55"></a>        tableSize *= 2;</span>
-<span id="cb8-56"><a href="#cb8-56"></a>        String[] newTable = new String[tableSize];</span>
-<span id="cb8-57"><a href="#cb8-57"></a>        for (String word : table) {</span>
-<span id="cb8-58"><a href="#cb8-58"></a>          newTable[whereToPut(word, newTable)] = word;</span>
-<span id="cb8-59"><a href="#cb8-59"></a>        }</span>
-<span id="cb8-60"><a href="#cb8-60"></a>        table = newTable;</span>
-<span id="cb8-61"><a href="#cb8-61"></a>    }</span>
-<span id="cb8-62"><a href="#cb8-62"></a></span>
-<span id="cb8-63"><a href="#cb8-63"></a>    public double load() {</span>
-<span id="cb8-64"><a href="#cb8-64"></a>        return (double) count / (double) tableSize;</span>
-<span id="cb8-65"><a href="#cb8-65"></a>    }</span>
-<span id="cb8-66"><a href="#cb8-66"></a></span>
-<span id="cb8-67"><a href="#cb8-67"></a>    @Override</span>
-<span id="cb8-68"><a href="#cb8-68"></a>    public String toString() {</span>
-<span id="cb8-69"><a href="#cb8-69"></a>        String retVal = &quot;&quot;;</span>
-<span id="cb8-70"><a href="#cb8-70"></a>        for (int i=0; i &lt; tableSize; i++) {</span>
-<span id="cb8-71"><a href="#cb8-71"></a>            if (table[i] != null) retVal += i + &quot; - &quot; + table[i] + &quot;\n&quot;;</span>
-<span id="cb8-72"><a href="#cb8-72"></a>        }</span>
-<span id="cb8-73"><a href="#cb8-73"></a>        return retVal.trim();</span>
-<span id="cb8-74"><a href="#cb8-74"></a>    }</span>
-<span id="cb8-75"><a href="#cb8-75"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource {java} number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="#cb9-1"></a>public class WordHash {</span>
+<span id="cb9-2"><a href="#cb9-2"></a>    private String[] table;</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    private int tableSize = 70000;</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    private int count;</span>
+<span id="cb9-5"><a href="#cb9-5"></a></span>
+<span id="cb9-6"><a href="#cb9-6"></a>    public WordHash() {</span>
+<span id="cb9-7"><a href="#cb9-7"></a>        table = new String[tableSize];</span>
+<span id="cb9-8"><a href="#cb9-8"></a>        count = 0;</span>
+<span id="cb9-9"><a href="#cb9-9"></a>    }</span>
+<span id="cb9-10"><a href="#cb9-10"></a></span>
+<span id="cb9-11"><a href="#cb9-11"></a>    /**</span>
+<span id="cb9-12"><a href="#cb9-12"></a>     * Hash function</span>
+<span id="cb9-13"><a href="#cb9-13"></a>     * @param word is a string, a word in English</span>
+<span id="cb9-14"><a href="#cb9-14"></a>     * @return an index, which is an int between 0 and tableSize-1</span>
+<span id="cb9-15"><a href="#cb9-15"></a>     */</span>
+<span id="cb9-16"><a href="#cb9-16"></a>    private int getIndex(String word) {</span>
+<span id="cb9-17"><a href="#cb9-17"></a>        int total = 0;</span>
+<span id="cb9-18"><a href="#cb9-18"></a>        for (char c : word.toCharArray()) {</span>
+<span id="cb9-19"><a href="#cb9-19"></a>            total += (int) c;</span>
+<span id="cb9-20"><a href="#cb9-20"></a>        }</span>
+<span id="cb9-21"><a href="#cb9-21"></a>        return (total * 997) % tableSize;</span>
+<span id="cb9-22"><a href="#cb9-22"></a>    }</span>
+<span id="cb9-23"><a href="#cb9-23"></a></span>
+<span id="cb9-24"><a href="#cb9-24"></a>    public void put(String word) {</span>
+<span id="cb9-25"><a href="#cb9-25"></a>        int index = getIndex(word);</span>
+<span id="cb9-26"><a href="#cb9-26"></a>        while (table[index] != null) {</span>
+<span id="cb9-27"><a href="#cb9-27"></a>            index++;</span>
+<span id="cb9-28"><a href="#cb9-28"></a>            if (index == tableSize -1) index = 0;</span>
+<span id="cb9-29"><a href="#cb9-29"></a>        }</span>
+<span id="cb9-30"><a href="#cb9-30"></a>        table[index] = word;</span>
+<span id="cb9-31"><a href="#cb9-31"></a>        count++;</span>
+<span id="cb9-32"><a href="#cb9-32"></a>        if (load() &gt; 0.7) expandArray();</span>
+<span id="cb9-33"><a href="#cb9-33"></a>    }</span>
+<span id="cb9-34"><a href="#cb9-34"></a></span>
+<span id="cb9-35"><a href="#cb9-35"></a>    public boolean contains(String word) {</span>
+<span id="cb9-36"><a href="#cb9-36"></a>        int index = getIndex(word);</span>
+<span id="cb9-37"><a href="#cb9-37"></a>        while (table[index]!= null &amp;&amp; !table[index].equals(word)) {</span>
+<span id="cb9-38"><a href="#cb9-38"></a>            index++;</span>
+<span id="cb9-39"><a href="#cb9-39"></a>            if (index == tableSize-1) index = 0;</span>
+<span id="cb9-40"><a href="#cb9-40"></a>        }</span>
+<span id="cb9-41"><a href="#cb9-41"></a>        if (table[index] == null) return false;</span>
+<span id="cb9-42"><a href="#cb9-42"></a>        return true;</span>
+<span id="cb9-43"><a href="#cb9-43"></a>    }</span>
+<span id="cb9-44"><a href="#cb9-44"></a></span>
+<span id="cb9-45"><a href="#cb9-45"></a>    private int whereToPut(String word, String[] newTable) {</span>
+<span id="cb9-46"><a href="#cb9-46"></a>        int index = getIndex(word);</span>
+<span id="cb9-47"><a href="#cb9-47"></a>        while (newTable[index] != null) {</span>
+<span id="cb9-48"><a href="#cb9-48"></a>            index++;</span>
+<span id="cb9-49"><a href="#cb9-49"></a>            if (index == tableSize-1) index = 0;</span>
+<span id="cb9-50"><a href="#cb9-50"></a>        }</span>
+<span id="cb9-51"><a href="#cb9-51"></a>        return index;</span>
+<span id="cb9-52"><a href="#cb9-52"></a>    }</span>
+<span id="cb9-53"><a href="#cb9-53"></a></span>
+<span id="cb9-54"><a href="#cb9-54"></a>    private void expandArray() {</span>
+<span id="cb9-55"><a href="#cb9-55"></a>        tableSize *= 2;</span>
+<span id="cb9-56"><a href="#cb9-56"></a>        String[] newTable = new String[tableSize];</span>
+<span id="cb9-57"><a href="#cb9-57"></a>        for (String word : table) {</span>
+<span id="cb9-58"><a href="#cb9-58"></a>          newTable[whereToPut(word, newTable)] = word;</span>
+<span id="cb9-59"><a href="#cb9-59"></a>        }</span>
+<span id="cb9-60"><a href="#cb9-60"></a>        table = newTable;</span>
+<span id="cb9-61"><a href="#cb9-61"></a>    }</span>
+<span id="cb9-62"><a href="#cb9-62"></a></span>
+<span id="cb9-63"><a href="#cb9-63"></a>    public double load() {</span>
+<span id="cb9-64"><a href="#cb9-64"></a>        return (double) count / (double) tableSize;</span>
+<span id="cb9-65"><a href="#cb9-65"></a>    }</span>
+<span id="cb9-66"><a href="#cb9-66"></a></span>
+<span id="cb9-67"><a href="#cb9-67"></a>    @Override</span>
+<span id="cb9-68"><a href="#cb9-68"></a>    public String toString() {</span>
+<span id="cb9-69"><a href="#cb9-69"></a>        String retVal = &quot;&quot;;</span>
+<span id="cb9-70"><a href="#cb9-70"></a>        for (int i=0; i &lt; tableSize; i++) {</span>
+<span id="cb9-71"><a href="#cb9-71"></a>            if (table[i] != null) retVal += i + &quot; - &quot; + table[i] + &quot;\n&quot;;</span>
+<span id="cb9-72"><a href="#cb9-72"></a>        }</span>
+<span id="cb9-73"><a href="#cb9-73"></a>        return retVal.trim();</span>
+<span id="cb9-74"><a href="#cb9-74"></a>    }</span>
+<span id="cb9-75"><a href="#cb9-75"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="student-rating-of-teaching" class="slide level2">
+<h2>Student Rating of Teaching</h2>
+<p>Go to canvas, on the menu on the left you will see a “Student Rating of Teaching” option.</p>
+<p>Please complete the survey: it’s anonymous, I don’t get the results until summer break, results are used for improving my teaching (and providing feedback to my boss)</p>
 <div class="footer footer-default">
 <p><a href="../index.html">go back to course home</a></p>
 </div>
