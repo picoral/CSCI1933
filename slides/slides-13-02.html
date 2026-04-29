@@ -1257,6 +1257,12 @@ margin-right: 0; }
 <span id="cb2-3"><a href="#cb2-3"></a>PriorityQueue&lt;Integer&gt; minHeap = new PriorityQueue&lt;&gt;();</span>
 <span id="cb2-4"><a href="#cb2-4"></a>PriorityQueue&lt;Integer&gt; maxHeap = new PriorityQueue&lt;&gt;(Comparator.reverseOrder());</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="stack" class="slide level2">
+<h2>Stack</h2>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html">Stack</a>: The usual push and pop operations are provided, as well as a method to peek at the top item on the stack, a method to test for whether the stack is empty, and a method to search the stack for an item and discover how far it is from the top. When a stack is first created, it contains no items.</li>
+</ul>
+</section>
 <section id="challenge-1-gradebook" class="slide level2">
 <h2>Challenge 1 – gradebook</h2>
 <p>Data (this code should be in GradeBook’s main):</p>
@@ -1293,8 +1299,18 @@ Sumayya     4591129758
 Wali        5553428631</code></pre>
 <p>Submit your <code>Contact.java</code> and <code>PhoneBook.java</code> (PhoneBook has main with the print statements) to <a href="https://www.gradescope.com/courses/1234179/assignments/8052094">gradescope</a></p>
 </section>
-<section id="challenge-3-anagrams" class="slide level2">
-<h2>Challenge 3 – anagrams</h2>
+<section id="challenge-3-balanced-string" class="slide level2">
+<h2>Challenge 3 – balanced string</h2>
+<p>Write a <code>Balanced</code> class with the follow static method signature:</p>
+<p><code>public static boolean isBalanced(String input)</code></p>
+<ul>
+<li>the <code>String input</code> argument always contains a sequence of the following characters: <code>(</code>, <code>{</code>, <code>[</code>, <code>)</code>, <code>}</code>, and <code>)</code> (no need to validate the argument string)</li>
+<li>Your <code>isBalanced</code> method should return <code>true</code> if the brackets are balanced</li>
+</ul>
+<p>Submit your <code>Balanced.java</code> file to <a href>gradescope</a></p>
+</section>
+<section id="challenge-4-anagrams" class="slide level2">
+<h2>Challenge 4 – anagrams</h2>
 <p>Submit your <code>Anagrams.java</code> (include a main with the print) to <a href="https://www.gradescope.com/courses/1234179/assignments/8052102/">gradescope</a></p>
 <pre><code>Enter a valid English word (Q to quit): tea
 Is &quot;aet&quot; a valid word [Y]es or [N]o? n
